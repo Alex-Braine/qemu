@@ -498,7 +498,7 @@ build_spice_client () {
     build_nghttp2 $NGHTTP2
     build $SQLITE3
     meson_build $LIBPSL
-    meson_build $SOUP_SRC
+    meson_build $SOUP_SRC -Dtests=false
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
 }
