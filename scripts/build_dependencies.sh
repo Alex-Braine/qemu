@@ -139,6 +139,8 @@ download_all () {
     download $GST_BASE_SRC
     download $GST_GOOD_SRC
     download $XML2_SRC
+    download $NGHTTP2
+    download $SQLITE3
     download $SOUP_SRC
     download $PHODAV_SRC
     download $SPICE_CLIENT_SRC
@@ -471,6 +473,8 @@ build_spice_client () {
     meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
     meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
     build $XML2_SRC --enable-shared=no --without-python
+    build $NGHTTP2
+    build $SQLITE3
     meson_build $SOUP_SRC
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
