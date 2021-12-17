@@ -141,6 +141,7 @@ download_all () {
     download $XML2_SRC
     download $NGHTTP2
     download $SQLITE3
+    download $LIBPSL
     download $SOUP_SRC
     download $PHODAV_SRC
     download $SPICE_CLIENT_SRC
@@ -496,6 +497,7 @@ build_spice_client () {
     #build $XML2_SRC --enable-shared=no --without-python
     build_nghttp2 $NGHTTP2
     build $SQLITE3
+    meson_build $LIBPSL
     meson_build $SOUP_SRC
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC

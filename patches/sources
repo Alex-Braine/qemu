@@ -35,6 +35,7 @@ GST_GOOD_SRC="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins
 XML2_SRC="http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz"
 NGHTTP2="https://github.com/nghttp2/nghttp2/releases/download/v1.46.0/nghttp2-1.46.0.tar.bz2"
 SQLITE3="https://www.sqlite.org/2021/sqlite-autoconf-3370000.tar.gz"
+LIBPSL="https://github.com/rockdaboot/libpsl/releases/download/0.21.1/libpsl-0.21.1.tar.gz"
 SOUP_SRC="https://download.gnome.org/sources/libsoup/3.0/libsoup-3.0.3.tar.xz"
 PHODAV_SRC="https://download.gnome.org/sources/phodav/2.5/phodav-2.5.tar.xz"
 SPICE_CLIENT_SRC="https://www.spice-space.org/download/gtk/spice-gtk-0.39.tar.xz"
