@@ -430,28 +430,28 @@ build_angle () {
 }
 
 build_qemu_dependencies () {
-    build $FFI_SRC
-    build $ICONV_SRC
-    build $GETTEXT_SRC --disable-java
-    build $PNG_SRC
-    build $JPEG_TURBO_SRC
+    #build $FFI_SRC
+    #build $ICONV_SRC
+    #build $GETTEXT_SRC --disable-java
+    #build $PNG_SRC
+    #build $JPEG_TURBO_SRC
     meson_build $GLIB_SRC -Dtests=false
-    build $GPG_ERROR_SRC
-    build $GCRYPT_SRC
-    build $PIXMAN_SRC
-    build_openssl $OPENSSL_SRC
-    build $OPUS_SRC
-    meson_build $SPICE_PROTOCOL_SRC
-    build $SPICE_SERVER_SRC
+    #build $GPG_ERROR_SRC
+    #build $GCRYPT_SRC
+    #build $PIXMAN_SRC
+    #build_openssl $OPENSSL_SRC
+    #build $OPUS_SRC
+    #meson_build $SPICE_PROTOCOL_SRC
+    #build $SPICE_SERVER_SRC
     # USB support
-    if [ -z "$SKIP_USB_BUILD" ]; then
-        build $USB_SRC
-        meson_build $USBREDIR_SRC
-    fi
+    #if [ -z "$SKIP_USB_BUILD" ]; then
+    #    build $USB_SRC
+    #    meson_build $USBREDIR_SRC
+    #fi
     # GPU support
-    build_angle
-    meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
-    meson_build $VIRGLRENDERER_REPO -Dtests=false
+    #build_angle
+    #meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
+    #meson_build $VIRGLRENDERER_REPO -Dtests=false
 }
 
 build_qemu () {
@@ -489,7 +489,7 @@ build_nghttp2 () {
 
 build_spice_client () {
     #meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
-    meson_build $JSON_GLIB_SRC
+    #meson_build $JSON_GLIB_SRC
     #meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
     #meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
     #meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
@@ -777,7 +777,7 @@ rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
 copy_private_headers
 build_pkg_config
-#build_qemu_dependencies
+build_qemu_dependencies
 #build_qemu $QEMU_PLATFORM_BUILD_FLAGS
 build_spice_client
 fixup_all
