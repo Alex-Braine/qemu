@@ -51,7 +51,7 @@ jobs:
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           brew uninstall cmake
-          brew install bison pkg-config nasm make meson glib
+          brew install bison pkg-config nasm make meson glib autoconf
           rm -f /usr/local/lib/pkgconfig/*.pc
           ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
       - name: Compress Sysroot
