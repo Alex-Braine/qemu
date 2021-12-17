@@ -466,7 +466,7 @@ build_qemu () {
 
 build_spice_client () {
     meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
-    build $JSON_GLIB_SRC
+    meson_build $JSON_GLIB_SRC
     meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
     meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
     meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
