@@ -471,7 +471,7 @@ build_spice_client () {
     meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
     meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
     build $XML2_SRC --enable-shared=no --without-python
-    meson_build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
+    meson_build $SOUP_SRC
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
 }

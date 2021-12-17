@@ -22,7 +22,7 @@ on:
 
 jobs:
   build:
-    name: Build UTM
+    name: Build
     runs-on: macos-11
     strategy:
       matrix:
