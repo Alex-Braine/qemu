@@ -466,14 +466,35 @@ build_qemu () {
     cd "$pwd"
 }
 
+
+build_nghttp2 () {
+    URL=$1
+    shift 1
+    FILE="$(basename $URL)"
+    NAME="${FILE%.tar.*}"
+    DIR="$BUILD_DIR/$NAME"
+    pwd="$(pwd)"
+
+    cd "$DIR"
+    if [ -z "$REBUILD" ]; then
+        echo "${GREEN}Configuring ${NAME}...${NC}"
+        ./configure --enable-lib-only --prefix="$PREFIX" --host="$CHOST" $@
+    fi
+    echo "${GREEN}Building ${NAME}...${NC}"
+    make "$MAKEFLAGS"
+    echo "${GREEN}Installing ${NAME}...${NC}"
+    make "$MAKEFLAGS" install
+    cd "$pwd"
+}
+
 build_spice_client () {
-    meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
-    meson_build $JSON_GLIB_SRC
-    meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
-    meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
-    meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
-    build $XML2_SRC --enable-shared=no --without-python
-    build $NGHTTP2
+    #meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
+    #meson_build $JSON_GLIB_SRC
+    #meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
+    #meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
+    #meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
+    #build $XML2_SRC --enable-shared=no --without-python
+    build_nghttp2 $NGHTTP2
     build $SQLITE3
     meson_build $SOUP_SRC
     meson_build $PHODAV_SRC
@@ -737,7 +758,7 @@ export CXXFLAGS
 export LDFLAGS
 export MAKEFLAGS
 
-brew install glib
+brew install glib python
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
@@ -756,8 +777,8 @@ rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
 copy_private_headers
 build_pkg_config
-build_qemu_dependencies
-build_qemu $QEMU_PLATFORM_BUILD_FLAGS
+#build_qemu_dependencies
+#build_qemu $QEMU_PLATFORM_BUILD_FLAGS
 build_spice_client
 fixup_all
 remove_shared_gst_plugins # another hack...
