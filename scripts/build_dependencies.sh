@@ -142,6 +142,7 @@ download_all () {
     download $NGHTTP2
     download $SQLITE3
     download $LIBPSL
+    download $SYSPROF
     download $SOUP_SRC
     download $PHODAV_SRC
     download $SPICE_CLIENT_SRC
@@ -498,6 +499,7 @@ build_spice_client () {
     build_nghttp2 $NGHTTP2
     build $SQLITE3
     meson_build $LIBPSL
+    meson_build $SYSPROF
     meson_build $SOUP_SRC -Dtests=false
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
