@@ -141,6 +141,7 @@ download_all () {
     download $XML2_SRC
     download $NGHTTP2
     download $SQLITE3
+    download $EXPAT
     download $LIBPSL
     download $POLKIT
     download $SYSPROF
@@ -499,6 +500,7 @@ build_spice_client () {
     build $XML2_SRC --enable-shared=no --without-python
     build_nghttp2 $NGHTTP2
     build $SQLITE3
+    build $EXPAT
     meson_build $LIBPSL
     meson_build $POLKIT
     meson_build $SYSPROF
