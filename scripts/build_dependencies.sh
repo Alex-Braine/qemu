@@ -526,7 +526,7 @@ build_spice_client () {
     meson_build $LIBPSL
 #-    meson_build $POLKIT
 #-    meson_build $SYSPROF
-    meson_build $SOUP_SRC -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
+    meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
 }
