@@ -444,12 +444,12 @@ build_qemu_dependencies () {
     build $OPUS_SRC
     meson_build $SPICE_PROTOCOL_SRC
     build $SPICE_SERVER_SRC
-     USB support
+    # USB support
     if [ -z "$SKIP_USB_BUILD" ]; then
         build $USB_SRC
         meson_build $USBREDIR_SRC
     fi
-     GPU support
+    # GPU support
     build_angle
     meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
     meson_build $VIRGLRENDERER_REPO -Dtests=false
