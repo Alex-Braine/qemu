@@ -522,12 +522,11 @@ build_spice_client () {
 #    build $XML2_SRC --enable-shared=no --without-python
 #    build_nghttp2 $NGHTTP2
 #    build $SQLITE3
-#    build_mozjs78 $FF78
     build $EXPAT
     meson_build $LIBPSL
 #-    meson_build $POLKIT
 #-    meson_build $SYSPROF
-    meson_build $SOUP_SRC -Dtests=false -Dsysprof=disabled
+    meson_build $SOUP_SRC -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
     meson_build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
 }
