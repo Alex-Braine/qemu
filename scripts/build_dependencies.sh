@@ -780,7 +780,7 @@ rm -f "$BUILD_DIR/meson.cross"
 copy_private_headers
 build_pkg_config
 build_qemu_dependencies
-#build_qemu $QEMU_PLATFORM_BUILD_FLAGS
+build_qemu $QEMU_PLATFORM_BUILD_FLAGS
 build_spice_client
 fixup_all
 remove_shared_gst_plugins # another hack...
