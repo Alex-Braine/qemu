@@ -530,7 +530,7 @@ build_spice_client () {
 #    meson_build $PHODAV_SRC
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
-    build $SPICE_CLIENT_SRC
+    build $SPICE_CLIENT_SRC --with-gtk=no
 }
 
 fixup () {
