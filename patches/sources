@@ -39,7 +39,7 @@ LIBPSL="https://github.com/rockdaboot/libpsl/releases/download/0.21.1/libpsl-0.2
 POLKIT="https://gitlab.freedesktop.org/polkit/polkit/-/archive/0.120/polkit-0.120.tar.bz2"
 SYSPROF="https://gitlab.gnome.org/GNOME/sysprof/-/archive/3.42.1/sysprof-3.42.1.tar.bz2"
 EXPAT="https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-2.4.1.tar.bz2"
-SOUP_SRC="https://download.gnome.org/sources/libsoup/2.99/libsoup-2.99.9.tar.xz"
+SOUP_SRC="https://download.gnome.org/sources/libsoup/2.74/libsoup-2.74.2.tar.xz"
 PHODAV_SRC="https://download.gnome.org/sources/phodav/2.5/phodav-2.5.tar.xz"
 SPICE_CLIENT_SRC="https://www.spice-space.org/download/gtk/spice-gtk-0.39.tar.xz"
 
