@@ -523,7 +523,7 @@ build_spice_client () {
 #    build $SQLITE3
     build $EXPAT
     meson_build $LIBPSL
-#-    meson_build $POLKIT
+    meson_build $POLKIT
 #-    meson_build $SYSPROF
 #-    meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
     build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
@@ -790,7 +790,13 @@ export LDFLAGS
 export MAKEFLAGS
 
 brew install glib python expat
-pip install six
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+sudo python2.7 get-pip.py
+which pip2.7
+/usr/local/bin/pip2.7 install six
+python -m six
+which python
+python --version
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
