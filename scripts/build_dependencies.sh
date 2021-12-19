@@ -525,7 +525,7 @@ build_spice_client () {
     meson_build $LIBPSL
 #-    meson_build $POLKIT
 #-    meson_build $SYSPROF
-    meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
+    meson_build $SOUP_SRC -Dgnome=false -Dtls_check=false -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled 
 #    build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
     meson_build $PHODAV_SRC -Dgtk_doc=disabled -Dsystemd=disabled
 #    build $PHODAV_SRC
