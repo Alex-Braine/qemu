@@ -43,7 +43,8 @@ EXPAT="https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-2.4.
 SOUP_SRC="https://ftp.gnome.org/pub/GNOME/sources/libsoup/2.65/libsoup-2.65.1.tar.xz"
 # only 2.2 was successfully built
 PHODAV_SRC="https://download.gnome.org/sources/phodav/2.2/phodav-2.2.tar.xz"
-SPICE_CLIENT_SRC="https://www.spice-space.org/download/gtk/spice-gtk-0.39.tar.xz"
+# 0.39 - subprojects/spice-common/meson.build:137:8: ERROR: Problem encountered: Python module six not found
+SPICE_CLIENT_SRC="https://www.spice-space.org/download/gtk/spice-gtk-0.36.tar.bz2"
 
 # Source files for GPU acceleration
 DEPOT_TOOLS_REPO="https://chromium.googlesource.com/chromium/tools/depot_tools.git"

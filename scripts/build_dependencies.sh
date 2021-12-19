@@ -513,11 +513,11 @@ build_mozjs78 () {
 }
 
 build_spice_client () {
-#    meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
-#    meson_build $JSON_GLIB_SRC
-#    meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
-#    meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
-#    meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
+    meson_build "$QEMU_DIR/subprojects/libucontext" -Ddefault_library=static -Dfreestanding=true
+    meson_build $JSON_GLIB_SRC
+    meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
+    meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
+    meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
     build $XML2_SRC --enable-shared=no --without-python
 #    build_nghttp2 $NGHTTP2
 #    build $SQLITE3
@@ -529,7 +529,8 @@ build_spice_client () {
     build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
 #    meson_build $PHODAV_SRC
     build $PHODAV_SRC
-    meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
+    #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
+    build $SPICE_CLIENT_SRC
 }
 
 fixup () {
@@ -816,7 +817,7 @@ rm -f "$BUILD_DIR/meson.cross"
 copy_private_headers
 build_pkg_config
 build_qemu_dependencies
-#build_qemu $QEMU_PLATFORM_BUILD_FLAGS
+build_qemu $QEMU_PLATFORM_BUILD_FLAGS
 build_spice_client
 fixup_all
 remove_shared_gst_plugins # another hack...
