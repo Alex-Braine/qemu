@@ -790,6 +790,7 @@ export LDFLAGS
 export MAKEFLAGS
 
 brew install glib python expat
+pip install six
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
