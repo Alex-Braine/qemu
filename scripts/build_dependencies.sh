@@ -518,7 +518,7 @@ build_spice_client () {
 #    meson_build $GST_SRC -Dtests=disabled -Ddefault_library=both -Dregistry=false
 #    meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
 #    meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
-#    build $XML2_SRC --enable-shared=no --without-python
+    build $XML2_SRC --enable-shared=no --without-python
 #    build_nghttp2 $NGHTTP2
 #    build $SQLITE3
     build $EXPAT
