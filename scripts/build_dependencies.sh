@@ -519,15 +519,15 @@ build_spice_client () {
 #    meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
 #    meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
     build $XML2_SRC --enable-shared=no --without-python
-    build_nghttp2 $NGHTTP2
-    build $SQLITE3
+#    build_nghttp2 $NGHTTP2
+#    build $SQLITE3
     build $EXPAT
     meson_build $LIBPSL
 #-    meson_build $POLKIT
 #-    meson_build $SYSPROF
-    meson_build $SOUP_SRC -Dgnome=false -Dtls_check=false -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled 
-#    build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
-    meson_build $PHODAV_SRC -Dgtk_doc=disabled -Dsystemd=disabled
+#-    meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
+    build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
+    meson_build $PHODAV_SRC
 #    build $PHODAV_SRC
     meson_build $SPICE_CLIENT_SRC
 }
