@@ -442,7 +442,7 @@ build_qemu_dependencies () {
     meson_build $GLIB_SRC -Dtests=false
 #    build $GPG_ERROR_SRC
 #    build $GCRYPT_SRC
-#    build $PIXMAN_SRC
+    build $PIXMAN_SRC
 #    build_openssl $OPENSSL_SRC
 #    build $OPUS_SRC
     meson_build $SPICE_PROTOCOL_SRC
