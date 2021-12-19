@@ -445,7 +445,7 @@ build_qemu_dependencies () {
     build $PIXMAN_SRC
     build_openssl $OPENSSL_SRC
     build $OPUS_SRC
-    meson_build $SPICE_PROTOCOL_SRC
+    build $SPICE_PROTOCOL_SRC
     build $SPICE_SERVER_SRC
     # USB support
     if [ -z "$SKIP_USB_BUILD" ]; then
