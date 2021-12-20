@@ -153,6 +153,7 @@ download_all () {
     download $SYSPROF
     download $SOUP_SRC
     download $PHODAV_SRC
+    download $GTK
     download $SPICE_CLIENT_SRC
     download $QEMU_SRC
     if [ -z "$SKIP_USB_BUILD" ]; then

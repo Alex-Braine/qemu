@@ -41,6 +41,7 @@ LIBPSL="https://github.com/rockdaboot/libpsl/releases/download/0.21.1/libpsl-0.2
 POLKIT="https://gitlab.freedesktop.org/polkit/polkit/-/archive/0.120/polkit-0.120.tar.bz2"
 SYSPROF="https://gitlab.gnome.org/GNOME/sysprof/-/archive/3.42.1/sysprof-3.42.1.tar.bz2"
 EXPAT="https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-2.4.1.tar.bz2"
+GTK="https://gitlab.gnome.org/GNOME/gtk/-/archive/4.5.1/gtk-4.5.1.tar.bz2"
 # 2.65 needs for phodav-2.2
 SOUP_SRC="https://ftp.gnome.org/pub/GNOME/sources/libsoup/2.65/libsoup-2.65.1.tar.xz"
 # only 2.2 was successfully built
