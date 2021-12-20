@@ -802,6 +802,7 @@ export MAKEFLAGS
 # python -m six
 # which python
 # python --version
+brew install glib
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
