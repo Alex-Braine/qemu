@@ -794,14 +794,14 @@ export CXXFLAGS
 export LDFLAGS
 export MAKEFLAGS
 
-brew install glib python expat
-wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-sudo python2.7 get-pip.py
-which pip2.7
-/usr/local/bin/pip2.7 install six
-python -m six
-which python
-python --version
+# "six" needs for spice-gtk-0.39, but spice-gtk-0.39 for some reason doesn't see it
+# wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+# sudo python2.7 get-pip.py
+# which pip2.7
+# /usr/local/bin/pip2.7 install six
+# python -m six
+# which python
+# python --version
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
