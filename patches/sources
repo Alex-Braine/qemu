@@ -23,7 +23,8 @@ X11="https://www.x.org/archive//individual/lib/libX11-1.7.3.1.tar.gz"
 SPICE_VGAGENT="https://www.spice-space.org/download/releases/spice-vdagent-0.21.0.tar.bz2"
 # It seems that spice-gtk 0.36 is not compatible with spice-protocol 0.14
 SPICE_PROTOCOL_SRC="https://www.spice-space.org/download/releases/spice-protocol-0.12.15.tar.bz2"
-SPICE_SERVER_SRC="https://www.spice-space.org/download/releases/spice-server/spice-0.15.0.tar.bz2"
+# spice-0.15 requested 'spice-protocol >= 0.14.3' but version of spice-protocol is 0.12.15
+SPICE_SERVER_SRC="https://www.spice-space.org/download/releases/spice-server/spice-0.14.1.tar.bz2"
 USB_SRC="https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.tar.bz2"
 USBREDIR_SRC="https://www.spice-space.org/download/usbredir/usbredir-0.12.0.tar.xz"
 QEMU_SRC="https://github.com/utmapp/qemu/releases/download/v6.1.0-utm/qemu-6.1.0-utm.tar.bz2"
