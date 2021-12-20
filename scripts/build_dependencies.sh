@@ -1,4 +1,10 @@
 #!/bin/sh
+# Copyright (c) 2019, utmapp/UTM
+#                                 Apache License
+#                           Version 2.0, January 2004
+#                        http://www.apache.org/licenses/
+#
+#
 # Based off of https://github.com/szanni/ios-autotools/blob/master/iconfigure
 # Copyright (c) 2014, Angelo Haller
 # 
@@ -519,15 +525,13 @@ build_spice_client () {
     meson_build $GST_BASE_SRC -Dtests=disabled -Ddefault_library=both
     meson_build $GST_GOOD_SRC -Dtests=disabled -Ddefault_library=both
     build $XML2_SRC --enable-shared=no --without-python
-#    build_nghttp2 $NGHTTP2
-#    build $SQLITE3
+#   build_nghttp2 $NGHTTP2
+#   build $SQLITE3
     build $EXPAT
     meson_build $LIBPSL
-#    meson_build $POLKIT
-#-    meson_build $SYSPROF
-#-    meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
+#   meson_build $POLKIT
+#   meson_build $SOUP_SRC -Dtls_check=false -Dautobahn=disabled -Dinstalled_tests=false -Dtests=false -Dsysprof=disabled -Dhttp2_tests=disabled -Dfuzzing=disabled -Dpkcs11_tests=disabled
     build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
-#    meson_build $PHODAV_SRC
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
     build $SPICE_CLIENT_SRC --with-gtk=no
