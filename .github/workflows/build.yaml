@@ -63,12 +63,7 @@ jobs:
         with:
           name: Sysroot-${{ matrix.platform }}-${{ matrix.arch }}
           path: sysroot.tgz
-      - name: Build UTM
-        run: |
-          ./scripts/build_utm.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }} -o UTM
-          tar cf UTM.xcarchive.tgz UTM.xcarchive
       - name: Upload UTM
         uses: actions/upload-artifact@v2
         with:
           name: UTM-${{ matrix.platform }}-${{ matrix.arch }}
-          path: UTM.xcarchive.tgz
