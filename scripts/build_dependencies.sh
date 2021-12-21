@@ -536,7 +536,7 @@ build_spice_client () {
     build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
-    meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=false
+    meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
     meson_build $GTK -Dx11-backend=false -Dwayland-backend=false -Dwin32-backend=false -Dmedia-gstreamer=disabled -Dprint-cups=disabled -Df16c=disabled -Dintrospection=disabled -Ddemos=false -Dbuild-examples=false -Dbuild-tests=false 
     build $SPICE_CLIENT_SRC
 }
