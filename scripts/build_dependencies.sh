@@ -344,7 +344,7 @@ build_openssl() {
 build () {
     URL=$1
     shift 1
-    FILE=`echo "$(basename $URL)" | sed 's/k%2B/\+/g'`
+    FILE=`echo "$(basename $URL)" | sed 's/%2B/\+/g'`
     NAME="${FILE%.tar.*}"
     DIR="$BUILD_DIR/$NAME"
     pwd="$(pwd)"
