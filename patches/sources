@@ -43,6 +43,7 @@ SYSPROF="https://gitlab.gnome.org/GNOME/sysprof/-/archive/3.42.1/sysprof-3.42.1.
 EXPAT="https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-2.4.1.tar.bz2"
 GRAPHENE="https://github.com/ebassi/graphene/releases/download/1.10.6/graphene-1.10.6.tar.xz"
 GTK="https://gitlab.gnome.org/GNOME/gtk/-/archive/4.5.1/gtk-4.5.1.tar.bz2"
+GTK3="https://download.gnome.org/sources/gtk+/3.24/gtk%2B-3.24.31.tar.xz"
 # 2.65 needs for phodav-2.2
 SOUP_SRC="https://ftp.gnome.org/pub/GNOME/sources/libsoup/2.65/libsoup-2.65.1.tar.xz"
 # only 2.2 was successfully built
