@@ -671,6 +671,8 @@ REBUILD=
 QEMU_DIR=
 REDOWNLOAD=
 PLATFORM_FAMILY_NAME=
+
+echo ":::::::::::::::::::::: $1"
 while [ "x$1" != "x" ]; do
     case $1 in
     -a )
