@@ -154,6 +154,7 @@ download_all () {
     download $SOUP_SRC
     download $PHODAV_SRC
     download $GRAPHENE
+    download $INTROSPECTION
     download $ATK
     download $PANGO
     download $FRIBIDI
@@ -542,6 +543,7 @@ build_spice_client () {
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
+    meson_build $INTROSPECTION
     meson_build $ATK
     meson_build $PANGO
     meson_build $FRIBIDI

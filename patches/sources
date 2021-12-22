@@ -48,6 +48,7 @@ PANGO="https://gitlab.gnome.org/GNOME/pango/-/archive/1.50.2/pango-1.50.2.tar.bz
 FRIBIDI="https://github.com/fribidi/fribidi/releases/download/v1.0.11/fribidi-1.0.11.tar.xz"
 CAIRO="https://cairographics.org/snapshots/cairo-1.17.4.tar.xz"
 PIXBUF="https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/archive/2.42.6/gdk-pixbuf-2.42.6.tar.bz2"
+INTROSPECTION="https://gitlab.gnome.org/GNOME/gobject-introspection/-/archive/1.70.0/gobject-introspection-1.70.0.tar.bz2"
 GTK3="https://download.gnome.org/sources/gtk+/3.24/gtk%2B-3.24.31.tar.xz"
 # 2.65 needs for phodav-2.2
 SOUP_SRC="https://ftp.gnome.org/pub/GNOME/sources/libsoup/2.65/libsoup-2.65.1.tar.xz"
