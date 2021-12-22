@@ -545,6 +545,7 @@ build_spice_client () {
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
     meson_build $INTROSPECTION
     meson_build $ATK
+    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=2\', language: \'c\'\)/" "$BUILD_DIR/pango-1.50.2/meson.build"
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
