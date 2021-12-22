@@ -36,15 +36,6 @@ CHOST=
 SDK=
 SDKMINVER=
 
-NCPU=
-
-echo $PLATFORM
-if [ "$PLATFORM" == "linux" ]; then
-    NCPU=$(nproc)
-else
-    NCPU=$(sysctl -n hw.ncpu)
-fi
-
 command -v realpath >/dev/null 2>&1 || realpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
@@ -420,9 +411,10 @@ meson_build_pango () {
         generate_meson_cross "$MESON_CROSS"
     fi
     pwd="$(pwd)"
-    export CFLAGS="$CFLAGS -ferror-limit=0"
+    export CFLAGS="$CFLAGS -ferror-limit=1000"
     cd "$SRCDIR"
-    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=2\', language: \'c\'\)/" "meson.build"
+    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=1000\', language: \'c\'\)/" "meson.build"
+    sed -i '' -e "15s/^//p; 15s/^.*/add_project_arguments\(\'-ferror-limit=1000\', language: \'cpp\'\)/" "meson.build"
     echo "meson_build_pango:::::"
     cat meson.build
     if [ -z "$REBUILD" ]; then
@@ -713,6 +705,12 @@ export ARCH
 
 if [ "x$PLATFORM" == "x" ]; then
     PLATFORM=ios
+fi
+
+if [ "$PLATFORM" == "linux" ]; then
+    NCPU=$(nproc)
+else
+    NCPU=$(sysctl -n hw.ncpu)
 fi
 
 # Export supplied CHOST or deduce by ARCH
