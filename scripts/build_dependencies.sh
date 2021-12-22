@@ -231,6 +231,9 @@ generate_meson_cross() {
     macos )
         echo "system = 'darwin'" >> $cross
         ;;
+    linux )
+        echo "system = 'linux'" >> $cross
+        ;;
     esac
     case "$ARCH" in
     armv7 | armv7s )
@@ -708,7 +711,6 @@ while [ "x$1" != "x" ]; do
     shift
 done
 
-echo "PLATFORM:::::: $PLATFORM"
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
@@ -746,7 +748,12 @@ if [ -z "$CHOST" ]; then
         ;;
     esac
 fi
-CHOST=$CPU-apple-darwin
+
+if [ "$PLATFORM" == "linux" ]; then
+    CHOST=$CPU-linux
+else
+    CHOST=$CPU-apple-darwin
+fi
 export CHOST
 
 case $PLATFORM in
@@ -828,13 +835,17 @@ fi
 PREFIX="$(realpath "$SYSROOT_DIR")"
 
 # Export supplied SDKVERSION or use system default
-SDKNAME=$(basename $(xcrun --sdk $SDK --show-sdk-platform-path) .platform)
-if [ ! -z "$SDKVERSION" ]; then
-    SDKROOT=$(xcrun --sdk $SDK --show-sdk-platform-path)"/Developer/SDKs/$SDKNAME$SDKVERSION.sdk"
-else
-    SDKVERSION=$(xcrun --sdk $SDK --show-sdk-version) # current version
-    SDKROOT=$(xcrun --sdk $SDK --show-sdk-path) # current version
+
+if [ "$PLATFORM" == "linux" ]; then
+    SDKNAME=$(basename $(xcrun --sdk $SDK --show-sdk-platform-path) .platform)
+    if [ ! -z "$SDKVERSION" ]; then
+        SDKROOT=$(xcrun --sdk $SDK --show-sdk-platform-path)"/Developer/SDKs/$SDKNAME$SDKVERSION.sdk"
+    else
+        SDKVERSION=$(xcrun --sdk $SDK --show-sdk-version) # current version
+        SDKROOT=$(xcrun --sdk $SDK --show-sdk-path) # current version
+    fi
 fi
+
 
 if [ -z "$SDKMINVER" ]; then
     SDKMINVER="$SDKVERSION"
