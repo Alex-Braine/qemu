@@ -867,6 +867,8 @@ if [ "$PLATFORM" == "macos" ]; then
     export NM
     export RANLIB
     export STRIP
+else
+    ln -s /usr/bin/make /usr/bin/gmake
 fi
 
 
