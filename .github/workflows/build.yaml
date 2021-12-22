@@ -79,7 +79,7 @@ jobs:
           sudo apt-get remove -y cmake
           sudo apt-get install -y bison pkg-config nasm make meson
           rm -f /usr/local/lib/pkgconfig/*.pc
-          bash ./scripts/build_dependencies.sh ${{ matrix.platform }} ${{ matrix.arch }}
+          bash ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
       - name: Compress Sysroot
         if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
         run: tar cf sysroot.tgz sysroot*

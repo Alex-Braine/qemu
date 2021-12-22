@@ -672,28 +672,34 @@ QEMU_DIR=
 REDOWNLOAD=
 PLATFORM_FAMILY_NAME=
 
-echo ":::::::::::::::::::::: $1"
+echo ":::::::::::::::::::::: $1 / $2"
 while [ "x$1" != "x" ]; do
     case $1 in
     -a )
+        echo '-a'
         ARCH=$(echo "$2" | tr '[:upper:]' '[:lower:]')
         shift
         ;;
     -d | --download )
+        echo '-d'
         REDOWNLOAD=y
         ;;
     -r | --rebuild )
+        echo '-r'
         REBUILD=y
         ;;
     -q | --qemu )
+        echo '-q'
         QEMU_DIR="$2"
         shift
         ;;
     -p )
+        echo '-p'
         PLATFORM=$(echo "$2" | tr '[:upper:]' '[:lower:]')
         shift
         ;;
     * )
+        echo '-*'
         usage
         ;;
     esac
