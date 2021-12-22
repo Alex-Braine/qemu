@@ -36,6 +36,9 @@ CHOST=
 SDK=
 SDKMINVER=
 
+NCPU=
+
+echo $PLATFORM
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
@@ -401,6 +404,39 @@ meson_build () {
     cd "$pwd"
 }
 
+
+meson_build_pango () {
+    SRCDIR="$1"
+    shift 1
+    FILE="$(basename $SRCDIR)"
+    NAME="${FILE%.tar.*}"
+    case $SRCDIR in
+    http* | ftp* )
+        SRCDIR="$BUILD_DIR/$NAME"
+        ;;
+    esac
+    MESON_CROSS="$(realpath "$BUILD_DIR/meson.cross")"
+    if [ ! -f "$MESON_CROSS" ]; then
+        generate_meson_cross "$MESON_CROSS"
+    fi
+    pwd="$(pwd)"
+    export CFLAGS="$CFLAGS -ferror-limit=0"
+    cd "$SRCDIR"
+    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=2\', language: \'c\'\)/" "meson.build"
+    echo "meson_build_pango:::::"
+    cat meson.build
+    if [ -z "$REBUILD" ]; then
+        rm -rf utm_build
+        echo "${GREEN}Configuring ${NAME}...${NC}"
+        meson utm_build --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
+    fi
+    echo "${GREEN}Building ${NAME}...${NC}"
+    meson compile -C utm_build
+    echo "${GREEN}Installing ${NAME}...${NC}"
+    meson install -C utm_build
+    cd "$pwd"
+}
+
 build_angle () {
     OLD_PATH=$PATH
     export PATH="$(realpath "$BUILD_DIR/depot_tools.git"):$OLD_PATH"
@@ -550,8 +586,7 @@ build_spice_client () {
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
     meson_build $INTROSPECTION
     meson_build $ATK
-    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=2\', language: \'c\'\)/" "$BUILD_DIR/pango-1.50.2/meson.build"
-    meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
+    meson_build_pango $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
     build $CAIRO
@@ -732,7 +767,7 @@ ios* )
         PLATFORM_FAMILY_NAME="$PLATFORM_FAMILY_PREFIX"
         ;;
     esac
-    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --disable-hvf --disable-cocoa --disable-slirp-smbd --with-coroutine=libucontext $TCI_BUILD_FLAGS"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --enable-shared-lib  --disable-hvf --disable-cocoa --disable-slirp-smbd --with-coroutine=libucontext $TCI_BUILD_FLAGS"
     ;;
 macos )
     if [ -z "$SDKMINVER" ]; then
@@ -742,7 +777,7 @@ macos )
     CFLAGS_MINVER="-mmacos-version-min=$SDKMINVER"
     CFLAGS_TARGET="-target $ARCH-apple-macos"
     PLATFORM_FAMILY_NAME="macOS"
-    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --disable-cocoa --cpu=$CPU"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --enable-shared-lib --disable-cocoa --cpu=$CPU"
     ;;
 * )
     usage
