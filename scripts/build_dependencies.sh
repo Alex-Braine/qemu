@@ -36,6 +36,8 @@ CHOST=
 SDK=
 SDKMINVER=
 
+NCPU= 
+
 command -v realpath >/dev/null 2>&1 || realpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
@@ -381,7 +383,6 @@ meson_build () {
         generate_meson_cross "$MESON_CROSS"
     fi
     pwd="$(pwd)"
-    export CFLAGS="$CFLAGS -ferror-limit=0"
     cd "$SRCDIR"
     if [ -z "$REBUILD" ]; then
         rm -rf utm_build
@@ -411,7 +412,6 @@ meson_build_pango () {
         generate_meson_cross "$MESON_CROSS"
     fi
     pwd="$(pwd)"
-    export CFLAGS="$CFLAGS -ferror-limit=1000"
     cd "$SRCDIR"
     sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=1000\', language: \'c\'\)/" "meson.build"
     sed -i '' -e "15s/^//p; 15s/^.*/add_project_arguments\(\'-ferror-limit=1000\', language: \'cpp\'\)/" "meson.build"
@@ -698,6 +698,12 @@ while [ "x$1" != "x" ]; do
     shift
 done
 
+if [ "$PLATFORM" == "linux" ]; then
+    NCPU=$(nproc)
+else
+    NCPU=$(sysctl -n hw.ncpu)
+fi
+
 if [ "x$ARCH" == "x" ]; then
     ARCH=arm64
 fi
@@ -705,12 +711,6 @@ export ARCH
 
 if [ "x$PLATFORM" == "x" ]; then
     PLATFORM=ios
-fi
-
-if [ "$PLATFORM" == "linux" ]; then
-    NCPU=$(nproc)
-else
-    NCPU=$(sysctl -n hw.ncpu)
 fi
 
 # Export supplied CHOST or deduce by ARCH
@@ -839,9 +839,9 @@ export STRIP
 export PREFIX
 
 # Flags
-CFLAGS="$CFLAGS -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
-CPPFLAGS="$CPPFLAGS -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
-CXXFLAGS="$CXXFLAGS -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CFLAGS="$CFLAGS -ferror-limit=1000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CPPFLAGS="$CPPFLAGS -ferror-limit=1000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CXXFLAGS="$CXXFLAGS -ferror-limit=1000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
 LDFLAGS="$LDFLAGS -arch $ARCH -isysroot $SDKROOT -L$PREFIX/lib $CFLAGS_MINVER $CFLAGS_TARGET"
 MAKEFLAGS="-j$NCPU"
 export CFLAGS
