@@ -709,7 +709,6 @@ while [ "x$1" != "x" ]; do
 done
 
 echo "PLATFORM:::::: $PLATFORM"
-echo "nproc::::: $(nproc)"
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
@@ -725,19 +724,24 @@ if [ "x$PLATFORM" == "x" ]; then
     PLATFORM=ios
 fi
 
+echo "ARCH:: $ARCH"
 # Export supplied CHOST or deduce by ARCH
 if [ -z "$CHOST" ]; then
     case $ARCH in
     armv7 | armv7s )
         CPU=arm
+        echo "CPU:: $CPU"
         ;;
     arm64 )
         CPU=aarch64
+        echo "CPU:: $CPU"
         ;;
     i386 | x86_64 )
         CPU=$ARCH
+        echo "CPU:: $CPU"
         ;;
     * )
+        echo "CPU none"
         usage
         ;;
     esac
@@ -787,6 +791,13 @@ macos )
     CFLAGS_MINVER="-mmacos-version-min=$SDKMINVER"
     CFLAGS_TARGET="-target $ARCH-apple-macos"
     PLATFORM_FAMILY_NAME="macOS"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --enable-shared-lib --disable-cocoa --cpu=$CPU"
+    ;;
+
+linux )
+    SDK=linux
+    CFLAGS_TARGET="-target $ARCH-linux"
+    PLATFORM_FAMILY_NAME="linux"
     QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --enable-shared-lib --disable-cocoa --cpu=$CPU"
     ;;
 * )
