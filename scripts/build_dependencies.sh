@@ -700,6 +700,8 @@ done
 
 echo "###############"
 echo $PLATFORM;
+echo $(nproc)
+echo "$PLATFORM" == "linux"
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
