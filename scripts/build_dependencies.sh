@@ -387,10 +387,10 @@ meson_build () {
     if [ -z "$REBUILD" ]; then
         rm -rf utm_build
         echo "${GREEN}Configuring ${NAME}...${NC}"
-        meson utm_build --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
+        meson utm_build -ferror-limit=0 --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
     fi
     echo "${GREEN}Building ${NAME}...${NC}"
-    meson compile -C utm_build -ferror-limit=0
+    meson compile -C utm_build
     echo "${GREEN}Installing ${NAME}...${NC}"
     meson install -C utm_build
     cd "$pwd"
