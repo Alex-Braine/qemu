@@ -390,7 +390,7 @@ meson_build () {
         meson utm_build --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
     fi
     echo "${GREEN}Building ${NAME}...${NC}"
-    meson compile -C utm_build
+    meson compile -C utm_build -ferror-limit=0
     echo "${GREEN}Installing ${NAME}...${NC}"
     meson install -C utm_build
     cd "$pwd"
