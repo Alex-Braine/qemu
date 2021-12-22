@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright (c) 2019, utmapp/UTM
 #                                 Apache License
 #                           Version 2.0, January 2004
