@@ -382,12 +382,12 @@ meson_build () {
         generate_meson_cross "$MESON_CROSS"
     fi
     pwd="$(pwd)"
-
+    export CFLAGS="-ferror-limit=0"
     cd "$SRCDIR"
     if [ -z "$REBUILD" ]; then
         rm -rf utm_build
         echo "${GREEN}Configuring ${NAME}...${NC}"
-        meson utm_build -ferror-limit=0 --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
+        meson utm_build --prefix="$PREFIX" --buildtype=plain --cross-file "$MESON_CROSS" "$@"
     fi
     echo "${GREEN}Building ${NAME}...${NC}"
     meson compile -C utm_build
