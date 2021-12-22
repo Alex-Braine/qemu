@@ -382,7 +382,7 @@ meson_build () {
         generate_meson_cross "$MESON_CROSS"
     fi
     pwd="$(pwd)"
-    export CFLAGS="-ferror-limit=0"
+    #export CFLAGS="-ferror-limit=0"
     cd "$SRCDIR"
     if [ -z "$REBUILD" ]; then
         rm -rf utm_build
