@@ -844,32 +844,33 @@ if [ "$PLATFORM" == "macos" ]; then
         SDKVERSION=$(xcrun --sdk $SDK --show-sdk-version) # current version
         SDKROOT=$(xcrun --sdk $SDK --show-sdk-path) # current version
     fi
+    if [ -z "$SDKMINVER" ]; then
+        SDKMINVER="$SDKVERSION"
+    fi
+
+    # Export tools
+    CC=$(xcrun --sdk $SDK --find gcc)
+    CPP=$(xcrun --sdk $SDK --find gcc)" -E"
+    CXX=$(xcrun --sdk $SDK --find g++)
+    OBJCC=$(xcrun --sdk $SDK --find clang)
+    LD=$(xcrun --sdk $SDK --find ld)
+    AR=$(xcrun --sdk $SDK --find ar)
+    NM=$(xcrun --sdk $SDK --find nm)
+    RANLIB=$(xcrun --sdk $SDK --find ranlib)
+    STRIP=$(xcrun --sdk $SDK --find strip)
+    export CC
+    export CPP
+    export CXX
+    export OBJCC
+    export LD
+    export AR
+    export NM
+    export RANLIB
+    export STRIP
 fi
 
 
-if [ -z "$SDKMINVER" ]; then
-    SDKMINVER="$SDKVERSION"
-fi
 
-# Export tools
-CC=$(xcrun --sdk $SDK --find gcc)
-CPP=$(xcrun --sdk $SDK --find gcc)" -E"
-CXX=$(xcrun --sdk $SDK --find g++)
-OBJCC=$(xcrun --sdk $SDK --find clang)
-LD=$(xcrun --sdk $SDK --find ld)
-AR=$(xcrun --sdk $SDK --find ar)
-NM=$(xcrun --sdk $SDK --find nm)
-RANLIB=$(xcrun --sdk $SDK --find ranlib)
-STRIP=$(xcrun --sdk $SDK --find strip)
-export CC
-export CPP
-export CXX
-export OBJCC
-export LD
-export AR
-export NM
-export RANLIB
-export STRIP
 export PREFIX
 
 # Flags
