@@ -820,7 +820,12 @@ export MAKEFLAGS
 # python -m six
 # which python
 # python --version
-brew install glib
+
+if [ "$PLATFORM" == "linux" ]; then
+    sudo apt-get install -y libglib2.0-dev
+else
+    brew install glib
+fi
 check_env
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then

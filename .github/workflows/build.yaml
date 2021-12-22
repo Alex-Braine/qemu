@@ -5,8 +5,8 @@ on:
       - 'master'
 
 jobs:
-  build:
-    name: Build
+  build-qemu-macos:
+    name: Build Qemu macos
     runs-on: macos-11
     strategy:
       matrix:
@@ -36,6 +36,46 @@ jobs:
         run: |
           brew uninstall cmake
           brew install bison pkg-config nasm make meson
+          rm -f /usr/local/lib/pkgconfig/*.pc
+          ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
+      - name: Compress Sysroot
+        if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
+        run: tar cf sysroot.tgz sysroot*
+      - name: Upload Sysroot
+        if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: Sysroot-${{ matrix.platform }}-${{ matrix.arch }}
+          path: sysroot.tgz
+  
+  build-qemu-linux:
+    name: Build Qemu linux
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [arm64, x86_64]
+        platform: [linux]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Cache Sysroot
+        id: cache-sysroot
+        uses: actions/cache@v2
+        with:
+          path: sysroot-${{ matrix.platform }}-${{ matrix.arch }}
+          key: ${{ matrix.platform }}-${{ matrix.arch }}-${{ hashFiles('scripts/build_dependencies.sh') }}-${{ hashFiles('patches/**') }}
+      - name: Setup Path
+        shell: bash
+        run: |
+          echo "/usr/local/opt/gettext/bin" >> $GITHUB_PATH
+          echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
+      - name: Build Sysroot
+        if: steps.cache-sysroot.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get uninstall -y cmake
+          sudo apt-get install -y bison pkg-config nasm make meson
           rm -f /usr/local/lib/pkgconfig/*.pc
           ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
       - name: Compress Sysroot
