@@ -678,6 +678,7 @@ while [ "x$1" != "x" ]; do
     -a )
         echo '-a'
         ARCH=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+        echo $ARCH
         shift
         ;;
     -d | --download )
@@ -696,6 +697,7 @@ while [ "x$1" != "x" ]; do
     -p )
         echo '-p'
         PLATFORM=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+        echo $PLATFORM
         shift
         ;;
     * )
@@ -706,10 +708,8 @@ while [ "x$1" != "x" ]; do
     shift
 done
 
-echo "###############"
-echo $PLATFORM;
-echo $(nproc)
-echo "$PLATFORM" == "linux"
+echo "PLATFORM:::::: $PLATFORM"
+echo "nproc::::: $(nproc)"
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
