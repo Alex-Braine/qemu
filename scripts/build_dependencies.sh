@@ -545,7 +545,7 @@ build_spice_client () {
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
     meson_build $INTROSPECTION
     meson_build $ATK
-    meson_build $PANGO
+    meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
     build $CAIRO
