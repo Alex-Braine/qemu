@@ -698,6 +698,8 @@ while [ "x$1" != "x" ]; do
     shift
 done
 
+echo "###############"
+echo $PLATFORM;
 if [ "$PLATFORM" == "linux" ]; then
     NCPU=$(nproc)
 else
