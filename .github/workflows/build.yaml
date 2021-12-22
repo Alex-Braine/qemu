@@ -77,7 +77,7 @@ jobs:
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           sudo apt-get remove -y cmake
-          sudo apt-get install -y bison pkg-config nasm make meson
+          sudo apt-get install -y bison pkg-config nasm make meson gettext
           rm -f /usr/local/lib/pkgconfig/*.pc
           bash ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
       - name: Compress Sysroot
