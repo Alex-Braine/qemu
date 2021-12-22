@@ -836,7 +836,7 @@ PREFIX="$(realpath "$SYSROOT_DIR")"
 
 # Export supplied SDKVERSION or use system default
 
-if [ "$PLATFORM" == "linux" ]; then
+if [ "$PLATFORM" == "macos" ]; then
     SDKNAME=$(basename $(xcrun --sdk $SDK --show-sdk-platform-path) .platform)
     if [ ! -z "$SDKVERSION" ]; then
         SDKROOT=$(xcrun --sdk $SDK --show-sdk-platform-path)"/Developer/SDKs/$SDKNAME$SDKVERSION.sdk"
