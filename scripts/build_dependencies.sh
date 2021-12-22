@@ -922,7 +922,9 @@ echo "${GREEN}Deleting old sysroot!${NC}"
 rm -rf "$PREFIX/"*
 rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
-copy_private_headers
+if [ "$PLATFORM" == "macos" ]; then
+    copy_private_headers
+fi
 build_pkg_config
 build_qemu_dependencies
 build_qemu $QEMU_PLATFORM_BUILD_FLAGS
