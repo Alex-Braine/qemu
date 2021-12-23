@@ -594,6 +594,7 @@ build_spice_client () {
 
 fixup () {
     FILE=$1
+    echo "::::::fixup $FILE"
     BASE=$(basename "$FILE")
     BASEFILENAME=${BASE%.*}
     LIBNAME=${BASEFILENAME#lib*}
@@ -634,16 +635,23 @@ fixup () {
     install_name_tool -id "$newname" "$NEWFILE"
     for g in $LIST
     do
+        echo "::::::install_name_tool"
+        echo $g
         base=$(basename "$g")
         basefilename=${base%.*}
         libname=${basefilename#lib*}
         dir=$(dirname "$g")
+
+        echo "$dir == $PREFIX/lib"
+
         if [ "$dir" == "$PREFIX/lib" ]; then
             if [ "$PLATFORM" == "macos" ]; then
                 newname="@rpath/$libname.framework/Versions/A/$libname"
             else
                 newname="@rpath/$libname.framework/$libname"
             fi
+
+            echo "install_name_tool -change $g $newname $NEWFILE"
             install_name_tool -change "$g" "$newname" "$NEWFILE"
         fi
     done
