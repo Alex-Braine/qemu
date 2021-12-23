@@ -209,13 +209,13 @@ generate_meson_cross() {
     cross="$1"
     echo "# Automatically generated - do not modify" > $cross
     echo "[properties]" >> $cross
-    #echo "needs_exe_wrapper = true" >> $cross
     echo "[built-in options]" >> $cross
     echo "c_args = [${CFLAGS:+$(meson_quote $CFLAGS)}]" >> $cross
     echo "cpp_args = [${CXXFLAGS:+$(meson_quote $CXXFLAGS)}]" >> $cross
     echo "c_link_args = [${LDFLAGS:+$(meson_quote $LDFLAGS)}]" >> $cross
     echo "cpp_link_args = [${LDFLAGS:+$(meson_quote $LDFLAGS)}]" >> $cross
     echo "[binaries]" >> $cross
+    echo "needs_exe_wrapper = true" >> $cross
     echo "c = [$(meson_quote $CC)]" >> $cross
     echo "cpp = [$(meson_quote $CXX)]" >> $cross
     echo "objc = [$(meson_quote $OBJCC)]" >> $cross
@@ -255,6 +255,8 @@ generate_meson_cross() {
     esac
     echo "cpu = '$ARCH'" >> $cross
     echo "endian = 'little'" >> $cross
+    echo "meson_cross::::::::::"
+    cat $cross
 }
 
 # Prevent contamination from host pkg-config files by building our own
