@@ -582,7 +582,7 @@ build_spice_client () {
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
-    meson_build $CAIRO -Dpng=disabled -Dtests=disabled
+    meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dquartz=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled  -Dsymbol-lookup=disabled 
     #meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled  -Dgi_cross_use_prebuilt_gi=true
     meson_build $ATK -Dintrospection=disabled
     meson_build $HARFBUZZ -Dintrospection=disabled
