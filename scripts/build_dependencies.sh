@@ -582,13 +582,13 @@ build_spice_client () {
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
-    meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled  -Dgi_cross_use_prebuilt_gi=true
-    meson_build $ATK
-    meson_build $HARFBUZZ
     meson_build $CAIRO -Dpng=disabled -Dtests=disabled
+    #meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled  -Dgi_cross_use_prebuilt_gi=true
+    meson_build $ATK -Dintrospection=disabled
+    meson_build $HARFBUZZ -Dintrospection=disabled
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
-    meson_build $PIXBUF
+    meson_build $PIXBUF -Dfontconfig=disabled
     build $GTK3 --disable-Bsymbolic --disable-xkb --disable-xinerama --disable-gtk-doc  --disable-cups  --disable-papi --disable-xinput --disable-packagekit --disable-x11-backend  --disable-win32-backend --disable-broadway-backend  --disable-wayland-backend --enable-introspection=no --disable-installed-tests --enable-quartz-backend
     #meson_build $GTK -Dx11-backend=false -Dwayland-backend=false -Dwin32-backend=false -Dmedia-gstreamer=disabled -Dprint-cups=disabled -Df16c=disabled -Dintrospection=disabled -Ddemos=false -Dbuild-examples=false -Dbuild-tests=false 
     build $SPICE_CLIENT_SRC
@@ -914,7 +914,7 @@ export MAKEFLAGS
 # python --version
 
 if [ "$PLATFORM" == "linux" ]; then
-    sudo apt-get install -y libglib2.0-dev
+    sudo apt-get install -y libglib2.0-dev libc6-dev
 else
     brew install glib
 fi
