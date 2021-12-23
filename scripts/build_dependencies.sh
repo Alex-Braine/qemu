@@ -581,8 +581,8 @@ build_spice_client () {
     build $SOUP_SRC --without-gnome --without-krb5-config --enable-shared=no --disable-tls-check
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
-    meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled -Dgi_cross_use_prebuilt_gi=true
-    meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled 
+    meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
+    meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled  -Dgi_cross_use_prebuilt_gi=true
     meson_build $ATK
     meson_build $HARFBUZZ
     meson_build $CAIRO -Dpng=disabled -Dtests=disabled
