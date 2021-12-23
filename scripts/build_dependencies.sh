@@ -583,10 +583,10 @@ build_spice_client () {
     meson_build $INTROSPECTION
     meson_build $ATK
     meson_build $HARFBUZZ
+    build $CAIRO
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
-    build $CAIRO
     build $GTK3 --disable-Bsymbolic --disable-xkb --disable-xinerama --disable-gtk-doc  --disable-cups  --disable-papi --disable-xinput --disable-packagekit --disable-x11-backend  --disable-win32-backend --disable-broadway-backend  --disable-wayland-backend --enable-introspection=no --disable-installed-tests --enable-quartz-backend
     #meson_build $GTK -Dx11-backend=false -Dwayland-backend=false -Dwin32-backend=false -Dmedia-gstreamer=disabled -Dprint-cups=disabled -Df16c=disabled -Dintrospection=disabled -Ddemos=false -Dbuild-examples=false -Dbuild-tests=false 
     build $SPICE_CLIENT_SRC
