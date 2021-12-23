@@ -583,7 +583,7 @@ build_spice_client () {
     meson_build $INTROSPECTION
     meson_build $ATK
     meson_build $HARFBUZZ
-    build $CAIRO
+    meson_build $CAIRO -Dpng=disabled -Dtests=disabled
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
