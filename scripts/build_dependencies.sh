@@ -767,7 +767,7 @@ if [ -z "$CHOST" ]; then
 fi
 
 if [ "$PLATFORM" == "linux" ]; then
-    CHOST=$CPU-linux
+    CHOST=$CPU-linux-gnu
 else
     CHOST=$CPU-apple-darwin
 fi
@@ -820,7 +820,7 @@ macos )
 
 linux )
     SDK=linux
-    CFLAGS_TARGET="-target $ARCH-linux"
+    CFLAGS_TARGET="-target $ARCH-linux-gnu"
     PLATFORM_FAMILY_NAME="linux"
     QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info  --enable-shared-lib --disable-cocoa --cpu=$CPU"
     ;;
