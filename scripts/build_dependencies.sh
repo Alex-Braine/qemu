@@ -157,6 +157,7 @@ download_all () {
     download $GRAPHENE
     download $INTROSPECTION
     download $ATK
+    download $HARFBUZZ
     download $PANGO
     download $FRIBIDI
     download $PIXBUF
@@ -581,7 +582,8 @@ build_spice_client () {
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
     meson_build $INTROSPECTION
     meson_build $ATK
-    meson_build_pango $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
+    meson_build $HARFBUZZ
+    meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI
     meson_build $PIXBUF
     build $CAIRO
