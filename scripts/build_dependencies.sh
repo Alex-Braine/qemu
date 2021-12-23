@@ -416,10 +416,10 @@ meson_build_pango () {
     fi
     pwd="$(pwd)"
     cd "$SRCDIR"
-    sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=100000\', language: \'c\'\)/" "meson.build"
-    sed -i '' -e "15s/^//p; 15s/^.*/add_project_arguments\(\'-ferror-limit=100000\', language: \'cpp\'\)/" "meson.build"
-    echo "meson_build_pango:::::"
-    cat meson.build
+    #sed -i '' -e "14s/^//p; 14s/^.*/add_project_arguments\(\'-ferror-limit=0\', language: \'c\'\)/" "meson.build"
+    #sed -i '' -e "15s/^//p; 15s/^.*/add_project_arguments\(\'-ferror-limit=0\', language: \'cpp\'\)/" "meson.build"
+    #echo "meson_build_pango:::::"
+    #cat meson.build
     if [ -z "$REBUILD" ]; then
         rm -rf utm_build
         echo "${GREEN}Configuring ${NAME}...${NC}"
@@ -881,9 +881,9 @@ fi
 export PREFIX
 
 # Flags
-CFLAGS="$CFLAGS -ferror-limit=100000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
-CPPFLAGS="$CPPFLAGS -ferror-limit=100000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
-CXXFLAGS="$CXXFLAGS -ferror-limit=100000 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CFLAGS="$CFLAGS -ferror-limit=0 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CPPFLAGS="$CPPFLAGS -ferror-limit=0 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
+CXXFLAGS="$CXXFLAGS -ferror-limit=0 -arch $ARCH -isysroot $SDKROOT -I$PREFIX/include $CFLAGS_MINVER $CFLAGS_TARGET"
 LDFLAGS="$LDFLAGS -arch $ARCH -isysroot $SDKROOT -L$PREFIX/lib $CFLAGS_MINVER $CFLAGS_TARGET"
 MAKEFLAGS="-j$NCPU"
 export CFLAGS
