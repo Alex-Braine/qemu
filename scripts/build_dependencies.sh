@@ -210,12 +210,12 @@ generate_meson_cross() {
     echo "# Automatically generated - do not modify" > $cross
     echo "[properties]" >> $cross
     echo "[built-in options]" >> $cross
+    #echo "needs_exe_wrapper = true" >> $cross
     echo "c_args = [${CFLAGS:+$(meson_quote $CFLAGS)}]" >> $cross
     echo "cpp_args = [${CXXFLAGS:+$(meson_quote $CXXFLAGS)}]" >> $cross
     echo "c_link_args = [${LDFLAGS:+$(meson_quote $LDFLAGS)}]" >> $cross
     echo "cpp_link_args = [${LDFLAGS:+$(meson_quote $LDFLAGS)}]" >> $cross
     echo "[binaries]" >> $cross
-    echo "needs_exe_wrapper = true" >> $cross
     echo "c = [$(meson_quote $CC)]" >> $cross
     echo "cpp = [$(meson_quote $CXX)]" >> $cross
     echo "objc = [$(meson_quote $OBJCC)]" >> $cross
