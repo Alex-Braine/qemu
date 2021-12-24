@@ -31,6 +31,13 @@ jobs:
         run: |
           echo "/usr/local/opt/gettext/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
+      - name: Macports
+        shell: bash
+        if: steps.cache-sysroot.outputs.cache-hit != 'true'
+        run: |
+          wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-12-Monterey.pkg
+          sudo installer -pkg ./MacPorts-2.7.1-12-Monterey.pkg -target /
+          sudo port install cairo-devel
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
