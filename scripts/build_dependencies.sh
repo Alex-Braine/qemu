@@ -162,6 +162,7 @@ download_all () {
     download $FRIBIDI
     download $PIXBUF
     download $CAIRO
+    download $CAIRO_OLD
     download $GTK3
     download $SPICE_CLIENT_SRC
     download $QEMU_SRC
@@ -588,7 +589,8 @@ build_spice_client () {
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI -Ddeprecated=false -Ddocs=false -Dbin=false -Dtests=false 
     meson_build $PIXBUF -Dgio_sniffing=false -Dpng=false -Dtiff=false -Djpeg=false -Dintrospection=disabled -Dman=false -Dinstalled_tests=false
-    meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled
+    build $CAIRO_OLD --disable-dependency-tracking
+    # meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled -Dquartz=disabled -Dsymbol-lookup=disabled
     build $GTK3 --disable-Bsymbolic --disable-xkb --disable-xinerama --disable-gtk-doc  --disable-cups  --disable-papi --disable-xinput --disable-packagekit --disable-x11-backend  --disable-win32-backend --disable-broadway-backend  --disable-wayland-backend --enable-introspection=no --disable-installed-tests --enable-quartz-backend
     #meson_build $GTK -Dx11-backend=false -Dwayland-backend=false -Dwin32-backend=false -Dmedia-gstreamer=disabled -Dprint-cups=disabled -Df16c=disabled -Dintrospection=disabled -Ddemos=false -Dbuild-examples=false -Dbuild-tests=false 
     build $SPICE_CLIENT_SRC
@@ -938,6 +940,8 @@ if [ "$PLATFORM" == "macos" ]; then
     copy_private_headers
     build_pkg_config
 fi
+build $CAIRO_OLD --disable-dependency-tracking
+
 build_qemu_dependencies
 build_qemu $QEMU_PLATFORM_BUILD_FLAGS
 build_spice_client
