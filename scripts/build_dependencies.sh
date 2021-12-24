@@ -940,6 +940,8 @@ if [ "$PLATFORM" == "macos" ]; then
     copy_private_headers
     build_pkg_config
 fi
+
+build $PNG_SRC
 build $CAIRO_OLD --disable-dependency-tracking
 
 build_qemu_dependencies
