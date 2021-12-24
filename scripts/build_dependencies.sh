@@ -582,13 +582,13 @@ build_spice_client () {
     build $PHODAV_SRC
     #meson_build $SPICE_CLIENT_SRC -Dpolkit=disabled
     meson_build $GRAPHENE -Dinstalled_tests=false -Dtests=false -Dintrospection=disabled
-    # meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dquartz=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled -Dsymbol-lookup=disabled 
     #meson_build $INTROSPECTION -Dcairo=disabled -Ddoctool=disabled  -Dgi_cross_use_prebuilt_gi=true
     meson_build $ATK -Dintrospection=false
     meson_build $HARFBUZZ -Dintrospection=disabled -Dcairo=disabled -Dglib=disabled -Dgobject=disabled -Dchafa=disabled -Dicu=disabled -Dfreetype=disabled -Dtests=disabled -Ddocs=disabled
     meson_build $PANGO -Dintrospection=disabled -Dlibthai=disabled -Dcairo=disabled -Dxft=disabled -Dfreetype=disabled -Dsysprof=disabled -Dfontconfig=disabled
     meson_build $FRIBIDI -Ddeprecated=false -Ddocs=false -Dbin=false -Dtests=false 
     meson_build $PIXBUF -Dgio_sniffing=false -Dpng=false -Dtiff=false -Djpeg=false -Dintrospection=disabled -Dman=false -Dinstalled_tests=false
+    meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dquartz=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled -Dsymbol-lookup=disabled 
     build $GTK3 --disable-Bsymbolic --disable-xkb --disable-xinerama --disable-gtk-doc  --disable-cups  --disable-papi --disable-xinput --disable-packagekit --disable-x11-backend  --disable-win32-backend --disable-broadway-backend  --disable-wayland-backend --enable-introspection=no --disable-installed-tests --enable-quartz-backend
     #meson_build $GTK -Dx11-backend=false -Dwayland-backend=false -Dwin32-backend=false -Dmedia-gstreamer=disabled -Dprint-cups=disabled -Df16c=disabled -Dintrospection=disabled -Ddemos=false -Dbuild-examples=false -Dbuild-tests=false 
     build $SPICE_CLIENT_SRC
