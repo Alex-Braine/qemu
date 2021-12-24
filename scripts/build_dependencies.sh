@@ -941,8 +941,9 @@ if [ "$PLATFORM" == "macos" ]; then
     build_pkg_config
 fi
 
-build $PNG_SRC
-build $CAIRO_OLD --disable-dependency-tracking
+# build $PNG_SRC
+# build $CAIRO_OLD --disable-dependency-tracking
+meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled -Dquartz=disabled -Dsymbol-lookup=disabled
 
 build_qemu_dependencies
 build_qemu $QEMU_PLATFORM_BUILD_FLAGS
