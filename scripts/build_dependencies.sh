@@ -945,7 +945,7 @@ fi
 # build $CAIRO_OLD --disable-dependency-tracking
 meson_build $GLIB_SRC -Dtests=false
 build $PIXMAN_SRC
-meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled
+meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled -Dsymbol-lookup=disabled -Dquartz=disabled
 
 build_qemu_dependencies
 build_qemu $QEMU_PLATFORM_BUILD_FLAGS
