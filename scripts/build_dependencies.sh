@@ -943,6 +943,7 @@ fi
 
 # build $PNG_SRC
 # build $CAIRO_OLD --disable-dependency-tracking
+meson_build $PIXBUF -Dgio_sniffing=false -Dpng=false -Dtiff=false -Djpeg=false -Dintrospection=disabled -Dman=false -Dinstalled_tests=false
 meson_build $CAIRO -Dpng=disabled -Dtests=disabled -Dfontconfig=disabled -Dfreetype=disabled -Dxcb=disabled -Dxlib=disabled -Dzlib=disabled -Dglib=disabled -Dspectre=disabled
 
 build_qemu_dependencies
