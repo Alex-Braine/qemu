@@ -941,10 +941,12 @@ if [ "$PLATFORM" == "macos" ]; then
     build_pkg_config
 fi
 
+export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "PKG_CONFIG_PATH $PKG_CONFIG_PATH"
+ls -lt /opt/local/lib/pkgconfig
 ls -l /opt/local/
 # build $PNG_SRC
 # build $CAIRO_OLD --disable-dependency-tracking

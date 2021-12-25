@@ -37,8 +37,6 @@ jobs:
         run: |
           wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
           sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / && sudo /opt/local/bin/port install gtk3-devel
-          ls -lt /opt/local/lib/pkgconfig
-          export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
