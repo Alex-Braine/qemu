@@ -853,7 +853,7 @@ elif [ ! -d "$QEMU_DIR" ]; then
 fi
 
 [ -d "$SYSROOT_DIR" ] || mkdir -p "$SYSROOT_DIR"
-PREFIX="$(realpath "$SYSROOT_DIR")"
+PREFIX="/opt/local"
 
 # Export supplied SDKVERSION or use system default
 
