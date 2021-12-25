@@ -40,10 +40,14 @@ jobs:
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
-          wget https://packages.macports.org/fontconfig/fontconfig-2.13.1_1.darwin_21.arm64.tbz2
-          tar -xzf fontconfig-2.13.1_1.darwin_21.arm64.tbz2
-          sudo chmod -R 0777 /opt/
-          sudo cp -R -H opt/local/* /opt/local/
+          sudo port -v selfupdate
+          sudo port info fontconfig
+          sudo port indtall fontconfig
+        
+          #wget https://packages.macports.org/fontconfig/fontconfig-2.13.1_1.darwin_21.arm64.tbz2
+          #tar -xzf fontconfig-2.13.1_1.darwin_21.arm64.tbz2
+          #sudo chmod -R 0777 /opt/
+          #sudo cp -R -H opt/local/* /opt/local/
       
       - name: Macports 2
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
