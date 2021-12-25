@@ -34,19 +34,20 @@ jobs:
       - name: Macports 0
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
-          #wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
-          #sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / 
+          # wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
+          # sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / 
           ls /opt/local/
+
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           sudo chmod -R 0777 /opt/
 
-         # sudo chmod 0777 /opt/local/etc/macports/macports.conf
-         # echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
-         #  echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
-         # tail -c500 /opt/local/etc/macports/macports.conf
-         # sudo /opt/local/bin/port -v selfupdate
+          # sudo chmod 0777 /opt/local/etc/macports/macports.conf
+          # echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
+          #  echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
+          # tail -c500 /opt/local/etc/macports/macports.conf
+          # sudo /opt/local/bin/port -v selfupdate
           wget https://packages.macports.org/at-spi2-atk/at-spi2-atk-2.38.0_0.darwin_20.arm64.tbz2
           tar -xzf at-spi2-atk-2.38.0_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/at-spi2-core/at-spi2-core-2.38.0_0.darwin_20.arm64.tbz2
