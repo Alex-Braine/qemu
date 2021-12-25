@@ -947,7 +947,6 @@ echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "PKG_CONFIG_PATH $PKG_CONFIG_PATH"
 ls -lt /opt/local/lib/pkgconfig
-ls -l /opt/local/
 # build $PNG_SRC
 # build $CAIRO_OLD --disable-dependency-tracking
 #meson_build $GLIB_SRC -Dtests=false

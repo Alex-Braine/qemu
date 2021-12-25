@@ -42,7 +42,6 @@ jobs:
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
-
           # sudo chmod 0777 /opt/local/etc/macports/macports.conf
           # echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           #  echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
@@ -218,10 +217,6 @@ jobs:
           tar -xzf gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           sudo cp -R -H opt/local/* /opt/local/
       
-      - name: Macports 2
-        if: steps.cache-sysroot.outputs.cache-hit != 'true'
-        run: |
-          sudo /opt/local/bin/port install gtk3-devel
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
