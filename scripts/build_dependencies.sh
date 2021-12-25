@@ -935,7 +935,7 @@ if [ -z "$REBUILD" ]; then
     download_all
 fi
 echo "${GREEN}Deleting old sysroot!${NC}"
-rm -rf "$PREFIX/"*
+#rm -rf "$PREFIX/"*
 rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
 if [ "$PLATFORM" == "macos" ]; then
