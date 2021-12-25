@@ -373,6 +373,8 @@ build () {
     echo "${GREEN}Installing ${NAME}...${NC}"
     make "$MAKEFLAGS" install
     cd "$pwd"
+    ls -l /opt/local
+    ls -l /opt/local/lib
 }
 
 meson_build () {
