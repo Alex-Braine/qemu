@@ -37,6 +37,7 @@ jobs:
         run: |
           wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
           sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / && sudo /opt/local/bin/port install gtk3-devel
+          ls -lt /opt/local/
           ls -lt /opt/X11/
           ls -lt /opt/X11/lib/
           ls -lt /opt/X11/local/
