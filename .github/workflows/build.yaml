@@ -32,11 +32,15 @@ jobs:
           echo "/usr/local/opt/gettext/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
       - name: Macports
-        shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
-          sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / && sudo cat /opt/local/etc/macports/macports.conf && sudo echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf && sudo /opt/local/bin/port install gtk3-devel
+          sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target /
+      - name: Macports 2
+        if: steps.cache-sysroot.outputs.cache-hit != 'true'
+        run: |
+          sudo echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
+          sudo /opt/local/bin/port install gtk3-devel
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
