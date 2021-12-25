@@ -40,9 +40,9 @@ jobs:
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
-          sudo port -v selfupdate
-          sudo port info fontconfig
-          sudo port indtall fontconfig
+          sudo /opt/local/bin/port -v selfupdate
+          sudo /opt/local/bin/port info fontconfig
+          sudo /opt/local/bin/port install fontconfig
         
           #wget https://packages.macports.org/fontconfig/fontconfig-2.13.1_1.darwin_21.arm64.tbz2
           #tar -xzf fontconfig-2.13.1_1.darwin_21.arm64.tbz2
