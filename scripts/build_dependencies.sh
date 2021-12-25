@@ -373,8 +373,8 @@ build () {
     echo "${GREEN}Installing ${NAME}...${NC}"
     make "$MAKEFLAGS" install
     cd "$pwd"
-    ls -l /opt/local
-    ls -l /opt/local/lib
+    #ls -l /opt/local
+    #ls -l /opt/local/lib
 }
 
 meson_build () {
@@ -943,7 +943,7 @@ if [ "$PLATFORM" == "macos" ]; then
     # build_pkg_config
 fi
 
-export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
+export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig"
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
