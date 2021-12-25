@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo chmod 0777 /opt/local/etc/macports/macports.conf
           echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
-          echo 'universal_archs arm64' >> /opt/local/etc/macports/macports.conf
+          echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
           tail -c500 /opt/local/etc/macports/macports.conf
           sudo /opt/local/bin/port -v selfupdate
           sudo /opt/local/bin/port upgrade outdated
