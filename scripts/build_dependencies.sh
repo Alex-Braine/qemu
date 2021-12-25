@@ -944,8 +944,8 @@ fi
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
+export PKG_CONFIG_PATH="/opt/local/"
 echo "PKG_CONFIG_PATH $PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"/opt/local/"
 ls -l /opt/local/
 # build $PNG_SRC
 # build $CAIRO_OLD --disable-dependency-tracking
