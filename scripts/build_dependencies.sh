@@ -222,7 +222,7 @@ generate_meson_cross() {
     echo "objc = [$(meson_quote $OBJCC)]" >> $cross
     echo "ar = [$(meson_quote $AR)]" >> $cross
     echo "nm = [$(meson_quote $NM)]" >> $cross
-    echo "pkgconfig = ['$PREFIX/host/bin/pkg-config']" >> $cross
+    echo "pkgconfig = ['/opt/local/bin/pkg-config']" >> $cross
     echo "ranlib = [$(meson_quote $RANLIB)]" >> $cross
     echo "strip = [$(meson_quote $STRIP), '-x']" >> $cross
     echo "[host_machine]" >> $cross
@@ -508,7 +508,7 @@ build_qemu_dependencies () {
     fi
     # GPU support
     build_angle
-    #meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
+    meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
     meson_build $VIRGLRENDERER_REPO -Dtests=false
 }
 
@@ -938,7 +938,7 @@ rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
 if [ "$PLATFORM" == "macos" ]; then
     copy_private_headers
-    build_pkg_config
+    # build_pkg_config
 fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
