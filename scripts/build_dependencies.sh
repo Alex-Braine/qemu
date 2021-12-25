@@ -944,7 +944,6 @@ fi
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
-export PKG_CONFIG_PATH="/opt/local/"
 echo "PKG_CONFIG_PATH $PKG_CONFIG_PATH"
 ls -l /opt/local/
 # build $PNG_SRC
