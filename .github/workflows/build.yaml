@@ -216,7 +216,7 @@ jobs:
           wget https://packages.macports.org/gtk3-devel/gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           tar -xzf gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           sudo cp -R -H opt/local/* /opt/local/
-      
+          /opt/local/bin/pkg-config --list-all
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
