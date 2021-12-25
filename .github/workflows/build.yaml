@@ -220,6 +220,7 @@ jobs:
           ls -l Applications
           ls -l Library
           /opt/local/bin/pkg-config --list-all
+          sudo chmod -R 0777 /opt/
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
