@@ -366,7 +366,7 @@ build () {
     cd "$DIR"
     if [ -z "$REBUILD" ]; then
         echo "${GREEN}Configuring ${NAME}...${NC}"
-        ./configure --prefix="$PREFIX" --host="$CHOST" $@
+        ./configure --prefix="/opt/local" --host="$CHOST" $@
     fi
     echo "${GREEN}Building ${NAME}...${NC}"
     make "$MAKEFLAGS"

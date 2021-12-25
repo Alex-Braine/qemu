@@ -217,6 +217,8 @@ jobs:
           tar -xzf gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           sudo cp -R -H opt/local/* /opt/local/
           ls -l
+          ls -l Applications
+          ls -l Library
           /opt/local/bin/pkg-config --list-all
       - name: Build Sysroot
         shell: bash
