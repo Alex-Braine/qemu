@@ -508,7 +508,7 @@ build_qemu_dependencies () {
     fi
     # GPU support
     build_angle
-    meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
+    #meson_build $EPOXY_REPO -Dtests=false -Dglx=no -Degl=yes
     meson_build $VIRGLRENDERER_REPO -Dtests=false
 }
 
