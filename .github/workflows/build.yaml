@@ -43,7 +43,7 @@ jobs:
           wget https://packages.macports.org/fontconfig/fontconfig-2.13.1_1.darwin_21.arm64.tbz2
           tar -xzf fontconfig-2.13.1_1.darwin_21.arm64.tbz2
           sudo chmod -R 0777 /opt/
-          sudo mv opt/local /opt/
+          sudo cp -r -H opt/local/* /opt/local/
       
       - name: Macports 2
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
