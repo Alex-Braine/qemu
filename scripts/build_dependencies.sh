@@ -499,7 +499,7 @@ build_qemu_dependencies () {
     build $GPG_ERROR_SRC
     build $GCRYPT_SRC
     build $PIXMAN_SRC
-    build_openssl $OPENSSL_SRC
+    # build_openssl $OPENSSL_SRC
     build $OPUS_SRC
     build $SPICE_PROTOCOL_SRC
     build $SPICE_SERVER_SRC
