@@ -439,6 +439,9 @@ meson_build_pango () {
 }
 
 build_angle () {
+
+    sudo chown -R runner /opt/
+
     OLD_PATH=$PATH
     export PATH="$(realpath "$BUILD_DIR/depot_tools.git"):$OLD_PATH"
     pwd="$(pwd)"
@@ -474,25 +477,24 @@ build_angle () {
         ;;
     esac
     
-    sudo chmod -R 0777 /opt/
-
+    echo 'gn gen'
     gn gen "--args=is_debug=false angle_build_all=false angle_enable_metal=true $IOS_BUILD_ARGS target_os=\"$TARGET_OS\" target_cpu=\"$TARGET_CPU\"" utm_build
 
-    sudo chmod -R 0777 /opt/
-
+    echo 'ninja -C utm_build -j'
     ninja -C utm_build -j $NCPU
-    if [ "$TARGET_OS" == "ios" ]; then
-        cp -a "utm_build/libEGL.framework/libEGL" "$PREFIX/lib/libEGL.dylib"
-        cp -a "utm_build/libGLESv2.framework/libGLESv2" "$PREFIX/lib/libGLESv2.dylib"
-    else
-        cp -a "utm_build/libEGL.dylib" "$PREFIX/lib/libEGL.dylib"
-        cp -a "utm_build/libGLESv2.dylib" "$PREFIX/lib/libGLESv2.dylib"
-    fi
 
-    sudo chmod -R 0777 /opt/
+    sudo chown -R runner /opt/
+    ls -l /opt/local/lib
+    echo 'cp -a'
+    cp -a "utm_build/libEGL.dylib" "$PREFIX/lib/libEGL.dylib"
+    cp -a "utm_build/libGLESv2.dylib" "$PREFIX/lib/libGLESv2.dylib"
 
+    echo 'install_name_tool'
     install_name_tool -id "$PREFIX/lib/libEGL.dylib" "$PREFIX/lib/libEGL.dylib"
     install_name_tool -id "$PREFIX/lib/libGLESv2.dylib" "$PREFIX/lib/libGLESv2.dylib"
+
+    sudo chown -R runner /opt/
+    echo 'rsync'
     rsync -a "include/" "$PREFIX/include"
     cd "$pwd"
     export PATH=$OLD_PATH
