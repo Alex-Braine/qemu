@@ -245,7 +245,7 @@ jobs:
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           sudo cp -R -H opt/local/* /opt/local/
-          
+          ls -l opt/local/lib/
           echo '###################'
           sudo ln -s opt/local/lib/libiconv* /usr/local/lib/
           sudo ln -s opt/local/include/libiconv* /usr/local/include/ 2>/dev/null
