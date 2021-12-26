@@ -513,6 +513,11 @@ build_qemu_dependencies () {
     # build_openssl $OPENSSL_SRC
     #build $OPUS_SRC
     build $SPICE_PROTOCOL_SRC
+    ls -l /opt/local/share/pkgconfig
+    cat /opt/local/share/pkgconfig/spice-protocol.pc
+    pkg-config --exists spice-protocol
+    echo "PKG_CONFIG_PATH $PKG_CONFIG_PATH"
+
     build $SPICE_SERVER_SRC
     # USB support
     if [ -z "$SKIP_USB_BUILD" ]; then

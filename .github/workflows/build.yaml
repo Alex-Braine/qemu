@@ -85,7 +85,7 @@ jobs:
           echo 'Name: iconv' >> opt/local/lib/pkgconfig/iconv.pc
           echo 'Description: iconv' >> opt/local/lib/pkgconfig/iconv.pc
           echo 'Version: 1.16.1' >> opt/local/lib/pkgconfig/iconv.pc
-          echo 'Cflags: -I${includedir}/iconv' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Cflags: -I${includedir}' >> opt/local/lib/pkgconfig/iconv.pc
           echo 'Libs: -L${libdir} -liconv' >> opt/local/lib/pkgconfig/iconv.pc
 
           wget https://packages.macports.org/gettext-tools-libs/gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
