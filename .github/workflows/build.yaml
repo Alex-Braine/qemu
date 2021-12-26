@@ -248,6 +248,14 @@ jobs:
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
 
+          ls -l /opt/local/include/iconv
+          
+          pkg-config --modversion iconv
+          pkg-config --libs iconv
+          pkg-config --exists iconv
+          pkg-config --exists --print-errors iconv
+
+
           cat opt/local/lib/pkgconfig/iconv.pc
           cat opt/local/lib/pkgconfig/glib-2.0.pc
           cat opt/local/lib/pkgconfig/expat.pc
