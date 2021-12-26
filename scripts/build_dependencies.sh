@@ -529,7 +529,8 @@ build_qemu_dependencies () {
     pkg-config --exists iconv
     pkg-config --exists --print-errors iconv
     echo ":::::::::::::::::::::::::::::::::::::::::"
-
+    echo 'pkg-config --atleast-pkgconfig-version 0.9.0'
+    pkg-config --atleast-pkgconfig-version 0.9.0
 
     build $SPICE_SERVER_SRC
     # USB support
@@ -978,7 +979,8 @@ export PKG_CONFIG="/opt/local/bin/pkg-config"
 
 ls -l /opt/local/bin
 which pkg-config
-pkg-config --list-all
+echo 'pkg-config --atleast-pkgconfig-version 0.9.0'
+pkg-config --atleast-pkgconfig-version 0.9.0
 
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
