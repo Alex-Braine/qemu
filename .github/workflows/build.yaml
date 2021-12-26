@@ -235,7 +235,10 @@ jobs:
           ls -l Library
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
-          sudo ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
+          sudo chown -R runner /opt/
+          ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
+          ln -s /opt/local/lib/* /usr/lib/
+
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
