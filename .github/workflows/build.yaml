@@ -249,7 +249,10 @@ jobs:
           sudo chown -R runner /opt/
 
           ls -l /opt/local/include/ | grep iconv
-          
+          sudo rm -rf /usr/local/bin/pkg-config
+          export PATH="/opt/local/bin:$PATH" 
+
+          echo '::::::::::::::::::::::pkg-config'
           which pkg-config
           pkg-config --list-all
           pkg-config --modversion iconv
