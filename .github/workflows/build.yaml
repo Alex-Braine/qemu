@@ -275,9 +275,6 @@ jobs:
           cat opt/local/lib/pkgconfig/iconv.pc
           cat opt/local/lib/pkgconfig/glib-2.0.pc
           cat opt/local/lib/pkgconfig/expat.pc
-
-          cp -H
-
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
