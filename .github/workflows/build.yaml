@@ -88,11 +88,6 @@ jobs:
           echo 'Cflags: -I${includedir}/iconv' >> opt/local/lib/pkgconfig/iconv.pc
           echo 'Libs: -L${libdir} -liconv' >> opt/local/lib/pkgconfig/iconv.pc
 
-          cat opt/local/lib/pkgconfig/iconv.pc
-          cat opt/local/lib/pkgconfig/glib-2.0.pc
-          cat opt/local/lib/pkgconfig/expat.pc
-          
-
           wget https://packages.macports.org/gettext-tools-libs/gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           tar -xzf gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/libtextstyle/libtextstyle-0.21_0.darwin_20.arm64.tbz2
@@ -252,6 +247,10 @@ jobs:
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
+
+          cat opt/local/lib/pkgconfig/iconv.pc
+          cat opt/local/lib/pkgconfig/glib-2.0.pc
+          cat opt/local/lib/pkgconfig/expat.pc
 
       - name: Build Sysroot
         shell: bash
