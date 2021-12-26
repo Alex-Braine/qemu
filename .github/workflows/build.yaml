@@ -247,16 +247,15 @@ jobs:
           sudo cp -R -H opt/local/* /opt/local/
           
           echo '###################'
-          sudo ln -s opt/local/lib/* /usr/local/lib/
-          #sudo ln -s opt/local/include/* /usr/local/include/ 2>/dev/null
-          #sudo ln -s opt/local/share/* /usr/local/share/ 2>/dev/null
-          #sudo ln -s opt/local/libexec/* /usr/local/libexec/ 2>/dev/null
-          #sudo ln -s opt/local/var/* /usr/local/var/ 2>/dev/null
+          sudo ln -s opt/local/lib/libiconv* /usr/local/lib/
+          sudo ln -s opt/local/include/libiconv* /usr/local/include/ 2>/dev/null
+          sudo ln -s opt/local/share/libiconv* /usr/local/share/ 2>/dev/null
+          sudo ln -s opt/local/libexec/libiconv* /usr/local/libexec/ 2>/dev/null
+          sudo ln -s opt/local/var/libiconv* /usr/local/var/ 2>/dev/null
           echo ':::::::::::::::::::::'
-          ls -l /usr/local/
           ls -l /usr/local/lib
-          ls -l Applications
-          ls -l Library
+          echo ':::::::::::::::::::::'
+
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
