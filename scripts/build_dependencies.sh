@@ -950,7 +950,7 @@ export MAKEFLAGS
 if [ "$PLATFORM" == "linux" ]; then
     sudo apt-get install -y libglib2.0-dev libc6-dev
 else
-    brew install glib
+    # brew install glib
 fi
 check_env
 
