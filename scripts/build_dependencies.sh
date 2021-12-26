@@ -961,9 +961,12 @@ fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig"
 export PATH="/opt/local/bin:$PATH" 
+export PKG_CONFIG="/opt/local/bin/pkg-config"
 
-id -un
-ls -l ~/
+ls -l /opt/local/bin
+which pkg-config
+pkg-config --list-all
+
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
