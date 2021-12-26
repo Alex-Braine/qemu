@@ -974,8 +974,8 @@ if [ "$PLATFORM" == "macos" ]; then
 fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig"
-export PATH="/opt/local/bin:$PATH" 
-export PKG_CONFIG="/opt/local/bin/pkg-config"
+#export PATH="/opt/local/bin:$PATH" 
+#export PKG_CONFIG="/opt/local/bin/pkg-config"
 
 ls -l /opt/local/bin
 which pkg-config
