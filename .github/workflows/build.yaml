@@ -248,7 +248,6 @@ jobs:
           sudo ln -s opt/local/lib/* /usr/local/lib/ 2>/dev/null
           sudo ln -s opt/local/include/* /usr/local/include/ 2>/dev/null
           sudo ln -s opt/local/share/* /usr/local/share/ 2>/dev/null
-          sudo ln -s opt/local/bin/* /usr/local/bin/ 2>/dev/null
           sudo ln -s opt/local/libexec/* /usr/local/libexec/ 2>/dev/null
           sudo ln -s opt/local/var/* /usr/local/var/ 2>/dev/null
           ls -l /usr/local/
