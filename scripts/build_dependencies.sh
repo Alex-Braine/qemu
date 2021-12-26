@@ -473,7 +473,13 @@ build_angle () {
         TARGET_CPU="x64"
         ;;
     esac
+    
+    sudo chmod -R 0777 /opt/
+
     gn gen "--args=is_debug=false angle_build_all=false angle_enable_metal=true $IOS_BUILD_ARGS target_os=\"$TARGET_OS\" target_cpu=\"$TARGET_CPU\"" utm_build
+
+    sudo chmod -R 0777 /opt/
+
     ninja -C utm_build -j $NCPU
     if [ "$TARGET_OS" == "ios" ]; then
         cp -a "utm_build/libEGL.framework/libEGL" "$PREFIX/lib/libEGL.dylib"
@@ -482,6 +488,9 @@ build_angle () {
         cp -a "utm_build/libEGL.dylib" "$PREFIX/lib/libEGL.dylib"
         cp -a "utm_build/libGLESv2.dylib" "$PREFIX/lib/libGLESv2.dylib"
     fi
+
+    sudo chmod -R 0777 /opt/
+
     install_name_tool -id "$PREFIX/lib/libEGL.dylib" "$PREFIX/lib/libEGL.dylib"
     install_name_tool -id "$PREFIX/lib/libGLESv2.dylib" "$PREFIX/lib/libGLESv2.dylib"
     rsync -a "include/" "$PREFIX/include"
@@ -944,6 +953,9 @@ if [ "$PLATFORM" == "macos" ]; then
 fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig"
+
+id -un
+ls -l ~/
 echo "PREFIX = $PREFIX"
 echo "BUILD_DIR = $BUILD_DIR"
 echo "BUILD_DIR = $BUILD_DIR"
