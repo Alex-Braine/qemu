@@ -236,8 +236,8 @@ jobs:
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
-          ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
-          ln -s /opt/local/lib/* /usr/lib/
+          #sudo ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
+          sudo ln -s /opt/local/lib/* /usr/lib/
 
       - name: Build Sysroot
         shell: bash
