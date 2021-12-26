@@ -241,7 +241,12 @@ jobs:
           wget https://packages.macports.org/gtk3-devel/gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           tar -xzf gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           sudo cp -R -H opt/local/* /opt/local/
-          sudo ln -s opt/local/* /usr/local/
+          sudo ln -s opt/local/lib/* /usr/local/lib/
+          sudo ln -s opt/local/include/* /usr/local/include/
+          sudo ln -s opt/local/share/* /usr/local/share/
+          sudo ln -s opt/local/bin/* /usr/local/bin/
+          sudo ln -s opt/local/libexec/* /usr/local/libexec/
+          sudo ln -s opt/local/var/* /usr/local/var/
           ls -l /usr/local/
           ls -l /usr/local/lib
           ls -l Applications
