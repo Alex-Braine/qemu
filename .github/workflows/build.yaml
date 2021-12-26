@@ -250,6 +250,9 @@ jobs:
 
           ls -l /opt/local/include/ | grep iconv
 
+          echo '::::::::::::::::::::::pkg-config version'
+          /usr/local/bin/pkg-config --version
+          /opt/local/bin/pkg-config --version
           echo '/usr/local/bin/pkg-config --atleast-pkgconfig-version 0.9.0'
           /usr/local/bin/pkg-config --atleast-pkgconfig-version 0.9.0
 
