@@ -250,6 +250,8 @@ jobs:
 
           ls -l /opt/local/include/ | grep iconv
           
+          which pkg-config
+          pkg-config --list-all
           pkg-config --modversion iconv
           pkg-config --libs iconv
           pkg-config --exists iconv
