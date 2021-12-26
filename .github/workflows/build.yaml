@@ -46,8 +46,6 @@ jobs:
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
-          sudo chown -R runner /usr/
-          sudo ln -s /opt/local/lib /usr/lib
           # sudo chmod 0777 /opt/local/etc/macports/macports.conf
           # echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           #  echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
@@ -237,6 +235,7 @@ jobs:
           ls -l Library
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
+          sudo ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
       - name: Build Sysroot
         shell: bash
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
