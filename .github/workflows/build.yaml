@@ -77,6 +77,15 @@ jobs:
           tar -xzf gettext-runtime-0.21_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/libiconv/libiconv-1.16_1.darwin_20.arm64.tbz2
           tar -xzf libiconv-1.16_1.darwin_20.arm64.tbz2
+          echo 'prefix=/opt/local' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'exec_prefix=${prefix}' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'libdir=${exec_prefix}/lib' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'includedir=${prefix}/include' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo '' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'Name: libiconv' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'Description: libiconv' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+          echo 'Version: 1.16.1' >> opt/local/lib/pkgconfig/libiconv-1.0.pc
+
           wget https://packages.macports.org/gettext-tools-libs/gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           tar -xzf gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/libtextstyle/libtextstyle-0.21_0.darwin_20.arm64.tbz2
@@ -236,11 +245,6 @@ jobs:
           /opt/local/bin/pkg-config --list-all
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
-          ls -l /usr/lib/
-          ls -l /opt/local/lib/
-          ls -l /opt/local/lib/libiconv.2.dylib
-          sudo ln -s /opt/local/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib
-          #sudo ln -s /opt/local/lib/* /usr/lib/
 
       - name: Build Sysroot
         shell: bash
