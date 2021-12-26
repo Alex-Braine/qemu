@@ -247,7 +247,7 @@ jobs:
           sudo cp -R -H opt/local/* /opt/local/
           
           echo '###################'
-          sudo ln -s opt/local/lib/* /usr/local/lib/ 2>/dev/null
+          sudo ln -s opt/local/lib/* /usr/local/lib/
           #sudo ln -s opt/local/include/* /usr/local/include/ 2>/dev/null
           #sudo ln -s opt/local/share/* /usr/local/share/ 2>/dev/null
           #sudo ln -s opt/local/libexec/* /usr/local/libexec/ 2>/dev/null
