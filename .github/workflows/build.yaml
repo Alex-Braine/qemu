@@ -38,6 +38,8 @@ jobs:
           # sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / 
           sudo mkdir /opt/local/
           sudo chmod -R 0777 /opt/
+          sudo chown -R runner /opt/
+          ls -lta /opt/
           id -un
 
       - name: Macports 1
