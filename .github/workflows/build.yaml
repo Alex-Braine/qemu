@@ -245,6 +245,8 @@ jobs:
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
           sudo cp -R -H opt/local/* /opt/local/
+          
+          echo '###################'
           sudo ln -s opt/local/lib/* /usr/local/lib/ 2>/dev/null
           #sudo ln -s opt/local/include/* /usr/local/include/ 2>/dev/null
           #sudo ln -s opt/local/share/* /usr/local/share/ 2>/dev/null
