@@ -960,6 +960,7 @@ if [ "$PLATFORM" == "macos" ]; then
 fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig"
+export PATH="/opt/local/bin:$PATH" 
 
 id -un
 ls -l ~/
