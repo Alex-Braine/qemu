@@ -240,6 +240,10 @@ jobs:
           tar -xzf xorg-libXrandr-1.5.2_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/gtk3-devel/gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
           tar -xzf gtk3-devel-3.24.30_1+x11.darwin_20.arm64.tbz2
+      - name: Macports 2
+        shell: bash
+        if: steps.cache-sysroot.outputs.cache-hit != 'true'
+        run: |
           sudo cp -R -H opt/local/* /opt/local/
           sudo ln -s opt/local/lib/* /usr/local/lib/ 2>/dev/null
           sudo ln -s opt/local/include/* /usr/local/include/ 2>/dev/null
