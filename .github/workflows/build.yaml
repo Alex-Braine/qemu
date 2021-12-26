@@ -37,6 +37,7 @@ jobs:
           # wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
           # sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target / 
           sudo mkdir /opt/local/
+          sudo mkdir /opt/local/lib
           sudo chmod -R 0777 /opt/
           sudo chown -R runner /opt/
           ls -lta /opt/
@@ -45,6 +46,7 @@ jobs:
       - name: Macports 1
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
+          sudo ln -s /opt/local/lib /usr/lib
           # sudo chmod 0777 /opt/local/etc/macports/macports.conf
           # echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           #  echo 'universal_archs arm64 x86_64' >> /opt/local/etc/macports/macports.conf
