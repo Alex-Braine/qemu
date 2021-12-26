@@ -77,17 +77,17 @@ jobs:
           tar -xzf gettext-runtime-0.21_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/libiconv/libiconv-1.16_1.darwin_20.arm64.tbz2
           tar -xzf libiconv-1.16_1.darwin_20.arm64.tbz2
-          echo 'prefix=/opt/local' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'exec_prefix=${prefix}' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'libdir=${exec_prefix}/lib' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'includedir=${prefix}/include' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo '' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'Name: libiconv' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'Description: libiconv' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'Version: 1.16.1' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'Cflags: -I${includedir}/libiconv' >> opt/local/lib/pkgconfig/libiconv.pc
-          echo 'Libs: -L${libdir} -llibiconv' >> opt/local/lib/pkgconfig/libiconv.pc
-          
+          echo 'prefix=/opt/local' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'exec_prefix=${prefix}' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'libdir=${exec_prefix}/lib' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'includedir=${prefix}/include' >> opt/local/lib/pkgconfig/iconv.pc
+          echo '' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Name: iconv' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Description: iconv' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Version: 1.16.1' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Cflags: -I${includedir}/iconv' >> opt/local/lib/pkgconfig/iconv.pc
+          echo 'Libs: -L${libdir} -liconv' >> opt/local/lib/pkgconfig/iconv.pc
+
           wget https://packages.macports.org/gettext-tools-libs/gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           tar -xzf gettext-tools-libs-0.21_0.darwin_20.arm64.tbz2
           wget https://packages.macports.org/libtextstyle/libtextstyle-0.21_0.darwin_20.arm64.tbz2
