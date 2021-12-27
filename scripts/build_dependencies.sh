@@ -977,6 +977,8 @@ export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig:/usr
 #export PATH="/opt/local/bin:$PATH" 
 #export PKG_CONFIG="/opt/local/bin/pkg-config"
 
+export DYLD_LIBRARY_PATH=/usr/lib/:/opt/local/lib/:/usr/local/lib/
+
 ls -l /opt/local/bin
 which pkg-config
 echo 'pkg-config --atleast-pkgconfig-version 0.9.0'
