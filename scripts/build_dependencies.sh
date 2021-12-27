@@ -977,7 +977,12 @@ export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig:/usr
 #export PATH="/opt/local/bin:$PATH" 
 #export PKG_CONFIG="/opt/local/bin/pkg-config"
 
-export DYLD_LIBRARY_PATH=/usr/lib/:/opt/local/lib/:/usr/local/lib/
+export DYLD_LIBRARY_PATH=/usr/lib:/opt/local/lib:/usr/local/lib
+
+echo 'otool -L /opt/local/bin/pkg-config'
+otool -L /opt/local/bin/pkg-config
+echo 'otool -L /usr/local/bin/pkg-config'
+otool -L /usr/local/bin/pkg-config
 
 ls -l /opt/local/bin
 which pkg-config
