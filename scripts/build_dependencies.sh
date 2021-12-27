@@ -501,17 +501,17 @@ build_angle () {
 }
 
 build_qemu_dependencies () {
-    #build $FFI_SRC
+    build $FFI_SRC
     build $ICONV_SRC
-    #build $GETTEXT_SRC --disable-java
-    #build $PNG_SRC
-    #build $JPEG_TURBO_SRC
-    #meson_build $GLIB_SRC -Dtests=false
-    #build $GPG_ERROR_SRC
-    #build $GCRYPT_SRC
-    #build $PIXMAN_SRC
-    # build_openssl $OPENSSL_SRC
-    #build $OPUS_SRC
+    build $GETTEXT_SRC --disable-java
+    build $PNG_SRC
+    build $JPEG_TURBO_SRC
+    meson_build $GLIB_SRC -Dtests=false
+    build $GPG_ERROR_SRC
+    build $GCRYPT_SRC
+    build $PIXMAN_SRC
+    build_openssl $OPENSSL_SRC
+    build $OPUS_SRC
     build $SPICE_PROTOCOL_SRC
     ls -l /opt/local/lib/pkgconfig/
     ls -l /opt/local/share/pkgconfig
@@ -535,7 +535,7 @@ build_qemu_dependencies () {
     build $SPICE_SERVER_SRC
     # USB support
     if [ -z "$SKIP_USB_BUILD" ]; then
-        #build $USB_SRC
+        build $USB_SRC
         meson_build $USBREDIR_SRC
     fi
     # GPU support
@@ -970,7 +970,7 @@ rm -f "$BUILD_DIR/BUILD_SUCCESS"
 rm -f "$BUILD_DIR/meson.cross"
 if [ "$PLATFORM" == "macos" ]; then
     copy_private_headers
-    # build_pkg_config
+    build_pkg_config
 fi
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig"
