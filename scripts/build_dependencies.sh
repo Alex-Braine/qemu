@@ -502,7 +502,7 @@ build_angle () {
 
 build_qemu_dependencies () {
     #build $FFI_SRC
-    #build $ICONV_SRC
+    build $ICONV_SRC
     #build $GETTEXT_SRC --disable-java
     #build $PNG_SRC
     #build $JPEG_TURBO_SRC
