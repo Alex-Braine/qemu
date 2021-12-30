@@ -39,7 +39,7 @@ jobs:
       
       - name: Compress
         run: |
-          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs /opt/local/bin
+          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin
       
       - name: Upload
         uses: actions/upload-artifact@v2
