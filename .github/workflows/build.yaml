@@ -41,20 +41,14 @@ jobs:
       
       - name: Compress
         run: |
-          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz libs bin
-      
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}
-          path: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz
+          tar -czvf `echo "qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz" | sed 's/ //g'` libs bin
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz
+            *.tgz
           prerelease: true
 
   build-qemu-macos:
