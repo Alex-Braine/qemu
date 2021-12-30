@@ -38,10 +38,10 @@ fixup_all () {
     BIN_LIST=$(ls -1 bin/)
     for BIN in $BIN_LIST
     do
-        LIB_LIST=$(otool -L $BIN | tail -n +2 | cut -d ' ' -f 1 | awk '{$1=$1};1')
+        LIB_LIST=$(otool -L bin/$BIN | tail -n +2 | cut -d ' ' -f 1 | awk '{$1=$1};1')
         for LIB in $LIB_LIST
         do
-            fix $LIB $BIN
+            fix $LIB "bin/$BIN"
         done
     done
 
