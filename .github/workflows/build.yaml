@@ -5,7 +5,46 @@ on:
       - 'master'
 
 jobs:
+
+  build0:
+    name: Build0
+    runs-on: macos-11
+    strategy:
+      matrix:
+        arch: [amd64]
+        platform: [macos]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: before
+        run: |
+          ls -lt /usr/local/lib
+          sudo du -sh /usr/local 
+
+      - name: Macports 0
+        run: |
+           wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
+           sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target /
+
+      - name: Install dependencies
+        run: |
+          export PATH="/opt/local/bin:$PATH" 
+
+          sudo port install glib2-devel gtk3 gtk-vnc meson pkgconfig spice-gtk
+          wget https://github.com/qemu/qemu/archive/refs/tags/v6.2.0.tar.gz
+          tar -xzf qemu-6.2.0.tar.gz
+          cd qemu-6.2.0
+          export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:/opt/local/share/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig"
+          meson build 
+          cd build
+          meson install
+
+
   build-qemu-macos:
+    if: false
     name: Build Qemu macos
     runs-on: macos-11
     strategy:
@@ -306,6 +345,7 @@ jobs:
           path: sysroot.tgz
   
   build-qemu-linux:
+    if: false
     name: Build Qemu linux
     runs-on: ubuntu-latest
     strategy:
