@@ -28,7 +28,21 @@ jobs:
         run: |
           export PATH="/opt/local/bin:$PATH" 
 
-          sudo port install qemu
+          sudo port install qemu 
+
+          chmod +x scripts/fix_mac.sh
+          scripts/fix_mac.sh
+      
+      - name: Compress
+        run: |
+          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs /opt/local/bin
+      
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}
+          path: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}.tgz
+
 
   build-qemu-macos:
     if: false
