@@ -28,7 +28,11 @@ jobs:
         run: |
           export PATH="/opt/local/bin:$PATH" 
 
-          sudo port install qemu 
+          sudo port install qemu
+          mkdir bin
+          cp /opt/local/bin/qemu-system-x86_64 bin/
+          cp /opt/local/bin/qemu-system-aarch64 bin/
+          cp /opt/local/bin/qemu-img bin/
 
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
