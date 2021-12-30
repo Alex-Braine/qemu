@@ -30,7 +30,7 @@ jobs:
         run: |
           export PATH="/opt/local/bin:$PATH" 
 
-          sudo port install qemu +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh {{ matrix.variants }}
+          sudo port install qemu +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ matrix.variants }}
           mkdir bin
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
@@ -41,13 +41,13 @@ jobs:
       
       - name: Compress
         run: |
-          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}{{ matrix.variants }}.tgz libs bin
+          tar -czvf qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz libs bin
       
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}{{ matrix.variants }}
-          path: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}{{ matrix.variants }}.tgz
+          name: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}
+          path: qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz
 
       - name: Release
         uses: softprops/action-gh-release@v1
