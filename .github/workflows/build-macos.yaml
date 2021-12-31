@@ -8,18 +8,18 @@ on:
 
 jobs:
   build-macos-ports:
-    if: false
     name: Build0
     runs-on: macos-11
     strategy:
       matrix:
         arch: [amd64]
         platform: [macos]
-        variants: ['+cocoa', '+gtk3 +sdl2']
     steps:
       - name: Branch name
         id: branch_name
-        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+        run: |
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/} && \
+          case `echo ${GITHUB_REF#refs/tags/} | cut -d - -f 2` in 'cocoa') echo ::set-output name=VARIANT::$(echo '+cocoa');; 'gtk3') echo ::set-output name=VARIANT::$(echo '+gtk3 +sdl2');; esac
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -64,7 +64,7 @@ jobs:
         run: |
           export PATH="/opt/local/bin:$PATH" 
 
-          sudo port install qemu @${{ steps.branch_name.outputs.SOURCE_TAG }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ matrix.variants }}
+          sudo port install qemu @${{ steps.branch_name.outputs.SOURCE_TAG }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
           mkdir bin
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
@@ -75,7 +75,7 @@ jobs:
       
       - name: Compress
         run: |
-          tar -czvf `echo "qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz" | sed 's/ //g'` libs bin
+          tar -czvf `echo "qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ steps.branch_name.outputs.VARIANT }}.tgz" | sed 's/ //g'` libs bin
 
       - name: Release
         uses: softprops/action-gh-release@v1
