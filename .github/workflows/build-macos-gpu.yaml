@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-qemu-macos:
+    if false:
     name: Build Qemu macos
     runs-on: macos-11
     strategy:

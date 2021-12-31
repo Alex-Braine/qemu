@@ -3,10 +3,12 @@ name: Publish
 on:
   push:
     tags:
-      - "*.*.*"
+      - "*.*.*-cocoa"
+      - "*.*.*-gtk3"
 
 jobs:
   build-macos-ports:
+    if false:
     name: Build0
     runs-on: macos-11
     strategy:
