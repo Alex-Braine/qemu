@@ -32,6 +32,7 @@ jobs:
           cp /usr/bin/qemu-img bin/ && \
           cp /usr/bin/qemu-system-x86_64 bin/ && \
           cp /usr/bin/qemu-system-aarch64 bin/ && \
+          find / -name "libsnappy.so.1" && \
           tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin"
 
           sudo docker cp qemu:/root/qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
@@ -43,7 +44,7 @@ jobs:
           files: |
             *.tgz
           prerelease: true
-          
+
   build-macos-ports:
     if: false
     name: Build0
