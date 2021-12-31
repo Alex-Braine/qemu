@@ -1,0 +1,84 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  build-macos-ports:
+    name: Build0
+    runs-on: macos-11
+    strategy:
+      matrix:
+        arch: [amd64]
+        platform: [macos]
+        variants: ['+cocoa', '+gtk3 +sdl2']
+    steps:
+      - name: Branch name
+        id: branch_name
+        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install the Apple certificate and provisioning profile
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.P12 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode --output $PP_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Macports 0
+        run: |
+           wget https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg
+           sudo installer -pkg ./MacPorts-2.7.1-11-BigSur.pkg -target /
+
+      - name: Install dependencies
+        run: |
+          export PATH="/opt/local/bin:$PATH" 
+
+          sudo port install qemu @${{ steps.branch_name.outputs.SOURCE_TAG }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ matrix.variants }}
+          mkdir bin
+          cp /opt/local/bin/qemu-system-x86_64 bin/
+          cp /opt/local/bin/qemu-system-aarch64 bin/
+          cp /opt/local/bin/qemu-img bin/
+
+          chmod +x scripts/fix_mac.sh
+          scripts/fix_mac.sh
+      
+      - name: Compress
+        run: |
+          tar -czvf `echo "qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.variants }}.tgz" | sed 's/ //g'` libs bin
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            *.tgz
+          prerelease: true

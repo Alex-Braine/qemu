@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  build-linux-dnf:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        platform: [linux]
+    steps:
+      - name: Branch name
+        id: branch_name
+        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: setup-qemu-action
+        uses: docker/setup-qemu-action@v1
+
+      - name: Install dependencies
+        run: |
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} fedora:36 -c "dnf update -y && \
+          dnf install -y findutils patchelf qemu-${{ steps.branch_name.outputs.SOURCE_TAG }} && \
+          cd /root/ && \
+          curl -OL https://raw.githubusercontent.com/kymano-app/remote-viewer/master/fix_linux.sh && \
+          bash fix_linux.sh ${{ matrix.arch }} && \
+          mkdir bin && \
+          cp /usr/bin/qemu-img bin/ && \
+          cp /usr/bin/qemu-system-x86_64 bin/ && \
+          cp /usr/bin/qemu-system-aarch64 bin/ && \
+          mkdir share && \
+          p=/usr/share && find \$p/ipxe/ \$p/seabios \$p/seavgabios \$p/sgabios \$p/qemu | while read f ; do true | cp -L \$f share/; done && \
+          tar -czvf qemu-${{ steps.branch_name.outputs.SOURCE_TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin share"
+
+          sudo docker cp qemu:/root/qemu-${{ steps.branch_name.outputs.SOURCE_TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.tgz
+          prerelease: true
