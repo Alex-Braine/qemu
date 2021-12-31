@@ -6,8 +6,46 @@ on:
       - "v*.*.*"
 
 jobs:
+  build-linux-dnf:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        platform: [linux]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-  build0:
+      - name: setup-qemu-action
+        uses: docker/setup-qemu-action@v1
+
+      - name: Install dependencies
+        run: |
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} fedora:36 -c "dnf update -y && \
+          dnf install -y findutils patchelf qemu && \
+          cd /root/ && \
+          curl -OL https://raw.githubusercontent.com/kymano-app/remote-viewer/master/fix_linux.sh && \
+          bash fix_linux.sh ${{ matrix.arch }} && \
+          mkdir bin && \
+          cp /usr/bin/qemu-img bin/ && \
+          cp /usr/bin/qemu-system-x86_64 bin/ && \
+          cp /usr/bin/qemu-system-aarch64 bin/ && \
+          tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin"
+
+          sudo docker cp qemu:/root/qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            *.tgz
+          prerelease: true
+          
+  build-macos-ports:
+    if: false
     name: Build0
     runs-on: macos-11
     strategy:
