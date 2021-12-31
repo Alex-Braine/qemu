@@ -12,6 +12,9 @@ jobs:
       matrix:
         arch: [amd64, arm64]
         platform: [linux]
+        include:
+          - fedora: 36
+            qemu: 6.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,8 +26,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} fedora:36 -c "dnf update -y && \
-          dnf install -y findutils patchelf qemu && \
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} fedora:${{ matrix.fedora }} -c "dnf update -y && \
+          dnf install -y findutils patchelf qemu-${{ matrix.qemu }} && \
           cd /root/ && \
           curl -OL https://raw.githubusercontent.com/kymano-app/remote-viewer/master/fix_linux.sh && \
           bash fix_linux.sh ${{ matrix.arch }} && \
@@ -34,9 +37,9 @@ jobs:
           cp /usr/bin/qemu-system-aarch64 bin/ && \
           mkdir share && \
           p=/usr/share && find \$p/ipxe/ \$p/seabios \$p/seavgabios \$p/sgabios \$p/qemu | while read f ; do true | cp -L \$f share/; done && \
-          tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin share"
+          tar -czvf qemu-${{ matrix.qemu }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin share"
 
-          sudo docker cp qemu:/root/qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
+          sudo docker cp qemu:/root/qemu-${{ matrix.qemu }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
 
       - name: Release
         uses: softprops/action-gh-release@v1
