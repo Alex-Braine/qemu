@@ -3,10 +3,11 @@ name: Publish
 on:
   push:
     tags:
-      - "*.*.*"
+      - "*.*.*-cocoa"
+      - "*.*.*-gtk3"
 
 jobs:
-  build-linux-dnf:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Branch name
