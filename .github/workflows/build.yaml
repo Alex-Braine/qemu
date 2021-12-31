@@ -32,7 +32,8 @@ jobs:
           cp /usr/bin/qemu-img bin/ && \
           cp /usr/bin/qemu-system-x86_64 bin/ && \
           cp /usr/bin/qemu-system-aarch64 bin/ && \
-          tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin"
+          cp -r /usr/share . && \
+          tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin share"
 
           sudo docker cp qemu:/root/qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
 
