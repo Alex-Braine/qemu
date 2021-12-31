@@ -7,7 +7,6 @@ on:
 
 jobs:
   build-linux-dnf:
-    if false:
     runs-on: ubuntu-latest
     steps:
       - name: Branch name
