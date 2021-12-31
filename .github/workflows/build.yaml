@@ -14,7 +14,11 @@ jobs:
         platform: [linux]
         include:
           - fedora: 36
-            qemu: 6.2
+            qemu: 6.2.0
+          - fedora: 35
+            qemu: 6.1.0
+          - fedora: 34
+            qemu: 5.2.0
     steps:
       - name: Checkout
         uses: actions/checkout@v2
