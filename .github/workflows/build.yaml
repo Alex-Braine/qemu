@@ -36,6 +36,9 @@ jobs:
           cp -r /usr/share/ipxe share/ && \
           cp -r /usr/share/ipxe.efi share/ && \
           cp -r /usr/share/qemu share/ && \
+          cp -r /usr/share/seabios share/ && \
+          cp -r /usr/share/seavgabios share/ && \
+          cp -r /usr/share/sgabios share/ && \
           tar -czvf qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz libs bin share"
 
           sudo docker cp qemu:/root/qemu-${{ matrix.platform }}-${{ matrix.arch }}.tgz .
