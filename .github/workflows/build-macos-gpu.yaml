@@ -14,6 +14,10 @@ jobs:
         arch: [arm64]
         platform: [macos]
     steps:
+      - name: Branch name
+        id: branch_name
+        run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -43,11 +47,11 @@ jobs:
       
       - name: Compress Sysroot
         if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
-        run: tar cf sysroot.tgz sysroot*
+        run: tar cf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" sysroot*
       
-      - name: Upload Sysroot
-        if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
-        uses: actions/upload-artifact@v2
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: Sysroot-${{ matrix.platform }}-${{ matrix.arch }}
-          path: sysroot.tgz
+          files: |
+            *.tgz
+          prerelease: true
