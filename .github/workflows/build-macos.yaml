@@ -76,11 +76,11 @@ jobs:
       
       - name: Compress
         run: |
-          zip -r --symlinks `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip" | sed 's/ //g'` libs/* bin/*
+          tar -czvf `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" | sed 's/ //g'` libs bin
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            *.zip
+            *.gtz
           prerelease: true
