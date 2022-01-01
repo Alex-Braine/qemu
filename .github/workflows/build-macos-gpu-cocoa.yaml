@@ -49,12 +49,12 @@ jobs:
         if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
         run: |
           cd sysroot-macOS-${{ matrix.arch }} && \
-          zip -r --symlinks qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip ./ && \
-          mv *.zip ../
+          tar -czvf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz ./ && \
+          mv *.tgz ../
       
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            *.zip
+            *.tgz
           prerelease: true
