@@ -3,8 +3,8 @@ name: Macos
 on:
   push:
     tags:
-      - "*.*.*-cocoa"
-      - "*.*.*-gtk3"
+      - "^*.*.*-cocoa"
+      - "^*.*.*-gtk3"
 
 jobs:
   build-macos-ports:
