@@ -1,4 +1,4 @@
-name: Macos GPU
+name: Macos gpu cocoa
 
 on:
   push:
