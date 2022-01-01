@@ -6,8 +6,7 @@ on:
       - "*.*.*"
 
 jobs:
-  build-linux-dnf:
-    if: false
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
