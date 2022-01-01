@@ -19,13 +19,8 @@ jobs:
         id: branch_name
         run: |
           echo ::set-output name=QEMU_VERSION::$(echo ${GITHUB_REF#refs/tags/} | cut -d - -f 1) && \
+          echo ::set-output name=TAG::${GITHUB_REF#refs/tags/} && \
           case `echo ${GITHUB_REF#refs/tags/} | cut -d - -f 2` in 'cocoa') echo ::set-output name=VARIANT::$(echo '+cocoa');; 'gtk3') echo ::set-output name=VARIANT::$(echo '+gtk3 +sdl2');; esac
-
-      - name: Branch name
-        run: |
-          echo ${{ steps.branch_name.outputs.QEMU_VERSION }} && \
-          echo ${{ steps.branch_name.outputs.VARIANT }}
-          
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -81,11 +76,10 @@ jobs:
       
       - name: Compress
         run: |
-          tar -czvf `echo "qemu-6.2-${{ matrix.platform }}-${{ matrix.arch }}${{ steps.branch_name.outputs.VARIANT }}.tgz" | sed 's/ //g'` libs bin
+          tar -czvf `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" | sed 's/ //g'` libs bin
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             *.tgz
