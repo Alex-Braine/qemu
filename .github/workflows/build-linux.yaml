@@ -39,7 +39,7 @@ jobs:
           cp /usr/bin/qemu-system-aarch64 bin/ && \
           mkdir share && \
           p=/usr/share && find \$p/ipxe/ \$p/seabios \$p/seavgabios \$p/sgabios \$p/qemu | while read f ; do true | cp -L \$f share/; done && \
-          zip -r qemu-${{ steps.branch_name.outputs.SOURCE_TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip libs/* bin/* share/*"
+          zip -r --symlinks qemu-${{ steps.branch_name.outputs.SOURCE_TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip libs/* bin/* share/*"
 
           sudo docker cp qemu:/root/qemu-${{ steps.branch_name.outputs.SOURCE_TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip .
 
