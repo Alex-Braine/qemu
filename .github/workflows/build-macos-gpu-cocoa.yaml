@@ -3,7 +3,7 @@ name: Macos GPU
 on:
   push:
     tags:
-      - "*.*.*-gpu"
+      - "*.*.*-gpu-cocoa"
 
 jobs:
   build:
@@ -47,11 +47,11 @@ jobs:
       
       - name: Compress Sysroot
         if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
-        run: tar cf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" sysroot*
+        run: zip qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.zip sysroot*
       
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            *.tgz
+            *.zip
           prerelease: true
