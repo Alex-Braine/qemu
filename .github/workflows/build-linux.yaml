@@ -2,12 +2,8 @@ name: Linux
 
 on:
   push:
-    tags:
-      - "*.*.*"
     tags-ignore:
-      - "*.*.*-gpu"
-      - "*.*.*-cocoa"
-      - "*.*.*-gtk3"
+      - "*.*.*-*"
 
 jobs:
   build:
