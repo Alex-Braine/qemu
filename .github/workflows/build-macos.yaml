@@ -74,6 +74,8 @@ jobs:
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
           ls -l /usr/local/share/
+          find / -name efi-virtio.rom 2>/dev/null
+          echo ':::::::::::::::::'
           p=/usr/local/share && find \$p/ipxe/ \$p/seabios \$p/seavgabios \$p/sgabios \$p/qemu | while read f ; do true | cp -L \$f share/; done
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
