@@ -70,7 +70,7 @@ jobs:
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
           cp /opt/local/bin/qemu-img bin/
-          mkdir share/qemu
+          mkdir -p share/qemu
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
           ls -l /usr/local/share/
