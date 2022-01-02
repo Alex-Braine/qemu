@@ -72,7 +72,7 @@ jobs:
           mkdir -p share
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
-          chown runner /opt/local/share/qemu
+          sudo chown -r runner /opt/local/share/qemu
           cp -r /opt/local/share/qemu share/
           #ls -l /usr/local/share/qemu
           echo '#################'
