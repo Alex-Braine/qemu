@@ -77,7 +77,8 @@ jobs:
           find / -name efi-virtio.rom 2>/dev/null
           find / -name efi-e1000.rom 2>/dev/null
           echo ':::::::::::::::::'
-          p=/usr/local/share && find $p/qemu | while read f ; do true | cp -L $f share/qemu; done
+          p=/usr/local/share && find $p/qemu | while read f ; do echo $f; true | cp -L $f share/qemu; done
+          echo ':::::::::::::::::'
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
       
