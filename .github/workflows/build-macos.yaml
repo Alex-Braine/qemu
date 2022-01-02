@@ -70,14 +70,14 @@ jobs:
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
           cp /opt/local/bin/qemu-img bin/
-          mkdir share 
+          mkdir share/qemu
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
           ls -l /usr/local/share/
           find / -name efi-virtio.rom 2>/dev/null
           find / -name efi-e1000.rom 2>/dev/null
           echo ':::::::::::::::::'
-          p=/usr/local/share && find \$p/ipxe/ \$p/seabios \$p/seavgabios \$p/sgabios \$p/qemu | while read f ; do true | cp -L \$f share/; done
+          p=/usr/local/share && find $p/qemu | while read f ; do true | cp -L $f share/qemu; done
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
       
