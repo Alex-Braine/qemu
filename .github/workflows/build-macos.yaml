@@ -63,8 +63,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PATH="/opt/local/bin:$PATH" 
-
+          export PATH="/opt/local/bin:$PATH"
           sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
           mkdir bin
           cp /opt/local/bin/qemu-system-x86_64 bin/
@@ -73,8 +72,8 @@ jobs:
           mkdir -p share
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
-          chown runner /usr/local/share/qemu
-          cp -r /usr/local/share/qemu share/
+          chown runner /opt/local/share/qemu
+          cp -r /opt/local/share/qemu share/
           #ls -l /usr/local/share/qemu
           echo '#################'
           #p=/usr/local/share && find $p/qemu | while read f ; do echo $f; true | cp -L $f share/qemu; done
