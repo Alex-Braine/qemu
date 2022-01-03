@@ -588,7 +588,9 @@ while [ "x$1" != "x" ]; do
         shift
         ;;
     -f )
-        echo "QEMU_BUILD_FLAGS $3"
+        echo "QEMU_BUILD_FLAGS 1 $1"
+        echo "QEMU_BUILD_FLAGS 2 $2"
+        echo "QEMU_BUILD_FLAGS 3 $3"
         if [[ $3 == "cocoa" ]]; then
             QEMU_BUILD_FLAGS='--disable-sdl --enable-cocoa'
         fi
