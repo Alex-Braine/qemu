@@ -588,12 +588,15 @@ while [ "x$1" != "x" ]; do
         shift
         ;;
     -f )
+        echo "QEMU_BUILD_FLAGS $3"
         if [ $3 == "cocoa" ]; then
             QEMU_BUILD_FLAGS='--disable-sdl --enable-cocoa'
         fi
         if [ $3 == "sdl" ]; then
             QEMU_BUILD_FLAGS='--enable-sdl --disable-cocoa'
         fi
+        echo "QEMU_BUILD_FLAGS $QEMU_BUILD_FLAGS"
+
         shift
         ;;
     * )
@@ -675,6 +678,8 @@ macos )
     CFLAGS_TARGET="-target $ARCH-apple-macos"
     PLATFORM_FAMILY_NAME="macOS"
     QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib $QEMU_BUILD_FLAGS  --cpu=$CPU"
+    echo "QEMU_PLATFORM_BUILD_FLAGS $QEMU_PLATFORM_BUILD_FLAGS"
+
     ;;
 * )
     usage

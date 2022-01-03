@@ -43,6 +43,7 @@ jobs:
       - name: Build Sysroot
         if: steps.cache-sysroot.outputs.cache-hit != 'true'
         run: |
+          echo "QEMU_FLAG: ${{ steps.branch_name.outputs.QEMU_FLAG }}"
           brew uninstall cmake
           brew install bison pkg-config nasm make meson glib
           rm -f /usr/local/lib/pkgconfig/*.pc
