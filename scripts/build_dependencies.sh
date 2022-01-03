@@ -587,6 +587,15 @@ while [ "x$1" != "x" ]; do
         PLATFORM=$(echo "$2" | tr '[:upper:]' '[:lower:]')
         shift
         ;;
+    -f )
+        if [ $3 == "cocoa" ]; then
+            QEMU_BUILD_FLAGS='--disable-sdl --enable-cocoa'
+        fi
+        if [ $3 == "sdl" ]; then
+            QEMU_BUILD_FLAGS='--enable-sdl --disable-cocoa'
+        fi
+        shift
+        ;;
     * )
         usage
         ;;
@@ -655,7 +664,7 @@ ios* )
         PLATFORM_FAMILY_NAME="$PLATFORM_FAMILY_PREFIX"
         ;;
     esac
-    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib --disable-hvf --enable-sdl --enable-cocoa --disable-coreaudio --disable-slirp-smbd --enable-ucontext --with-coroutine=libucontext $TCI_BUILD_FLAGS"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib --disable-hvf --disable-coreaudio --disable-slirp-smbd --enable-ucontext --with-coroutine=libucontext $TCI_BUILD_FLAGS"
     ;;
 macos )
     if [ -z "$SDKMINVER" ]; then
@@ -665,7 +674,7 @@ macos )
     CFLAGS_MINVER="-mmacos-version-min=$SDKMINVER"
     CFLAGS_TARGET="-target $ARCH-apple-macos"
     PLATFORM_FAMILY_NAME="macOS"
-    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib --enable-sdl --enable-cocoa  --cpu=$CPU"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib $QEMU_BUILD_FLAGS  --cpu=$CPU"
     ;;
 * )
     usage

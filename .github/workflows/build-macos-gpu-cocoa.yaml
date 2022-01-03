@@ -1,9 +1,9 @@
-name: Macos gpu cocoa
+name: Macos gpu
 
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+-gpu-cocoa"
+      - "[0-9]+.[0-9]+.[0-9]+-gpu"
 
 jobs:
   build:
@@ -13,6 +13,7 @@ jobs:
       matrix:
         arch: [arm64]
         platform: [macos]
+        building-flags: [sdl, cocoa]
     steps:
       - name: Branch name
         id: branch_name
@@ -43,13 +44,13 @@ jobs:
           brew uninstall cmake
           brew install bison pkg-config nasm make meson glib
           rm -f /usr/local/lib/pkgconfig/*.pc
-          ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }}
+          ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }} -f ${{ matrix.building-flags }}
       
       - name: Compress Sysroot
         if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
         run: |
           cd sysroot-macOS-${{ matrix.arch }} && \
-          tar -czvf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz ./ && \
+          tar -czvf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.building-flags }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz ./ && \
           mv *.tgz ../
       
       - name: Release
