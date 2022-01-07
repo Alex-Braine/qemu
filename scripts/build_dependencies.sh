@@ -676,7 +676,7 @@ macos )
     CFLAGS_MINVER="-mmacos-version-min=$SDKMINVER"
     CFLAGS_TARGET="-target $ARCH-apple-macos"
     PLATFORM_FAMILY_NAME="macOS"
-    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib $QEMU_BUILD_FLAGS  --cpu=$CPU"
+    QEMU_PLATFORM_BUILD_FLAGS="--disable-debug-info --enable-shared-lib $QEMU_BUILD_FLAGS --enable-curses --cpu=$CPU"
     echo "QEMU_PLATFORM_BUILD_FLAGS $QEMU_PLATFORM_BUILD_FLAGS"
 
     ;;
