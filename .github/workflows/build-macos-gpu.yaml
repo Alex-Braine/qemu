@@ -50,18 +50,11 @@ jobs:
           ./scripts/build_dependencies.sh -p ${{ matrix.platform }} -a ${{ matrix.arch }} -f ${{ steps.branch_name.outputs.QEMU_FLAG }}
       
       - name: Compress Sysroot
-        if: steps.cache-sysroot.outputs.cache-hit != 'true' || github.event_name == 'release' || github.event.inputs.test_release == 'true'
         run: |
           cd sysroot-macOS-${{ matrix.arch }} && \
           tar -czvf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz ./ && \
           mv *.tgz ../
-      
-      - name:  Sysroot
-        if: steps.cache-sysroot.outputs.cache-hit == 'true'
-        run: |
-          cd sysroot-macOS-${{ matrix.arch }} && \
-          ls -l
-
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
