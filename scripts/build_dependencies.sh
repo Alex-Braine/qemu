@@ -143,6 +143,7 @@ download_all () {
     download $PHODAV_SRC
     download $SPICE_CLIENT_SRC
     download $SDL_SRC
+    download $NCURSES
     download $QEMU_SRC
     if [ -z "$SKIP_USB_BUILD" ]; then
         download $USB_SRC
@@ -448,6 +449,7 @@ build_qemu_dependencies () {
     build $SPICE_PROTOCOL_SRC
     build $SPICE_SERVER_SRC
     build $SDL_SRC
+    build $NCURSES
     # USB support
     if [ -z "$SKIP_USB_BUILD" ]; then
         build $USB_SRC
