@@ -56,6 +56,12 @@ jobs:
           tar -czvf qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz ./ && \
           mv *.tgz ../
       
+      - name:  Sysroot
+        if: steps.cache-sysroot.outputs.cache-hit == 'true'
+        run: |
+          cd sysroot-macOS-${{ matrix.arch }} && \
+          ls -l
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
