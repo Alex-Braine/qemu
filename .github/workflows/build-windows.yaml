@@ -31,7 +31,7 @@ jobs:
       - name: c1
         shell: pwsh
         run: |
-          ls -l "/mingw64/"
+          ls -l "D:\"
       
       - name: c2
         shell: pwsh
