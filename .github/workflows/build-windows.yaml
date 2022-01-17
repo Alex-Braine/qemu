@@ -33,9 +33,7 @@ jobs:
         run: |
           pacman -Syu
           pacman -Su
-          pacman -S base-devel --noconfirm
           pacman -S mingw-w64-x86_64-toolchain --noconfirm
-          pacman -S git --noconfirm
           pacman -S python --noconfirm
           pacman -S ninja --noconfirm
           pacman -S mingw-w64-x86_64-glib2 --noconfirm
@@ -55,12 +53,13 @@ jobs:
       - name: Install 002
         run: |
           pacman -Suy --noconfirm
-          pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
+          pacman -Sy --noconfirm mingw-w64-x86_64-gcc git python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
           pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           pacman -Sy --noconfirm ninja
           pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
-          pacman -Sy --noconfirm mingw-w64-x86_64-pixman
+          pacman -Sy --noconfirm mingw-w64-x86_64-glib2-devel
+          pacman -Sy --noconfirm mingw-w64-x86_64-glib2
           git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
           cd qemu
           git submodule init
