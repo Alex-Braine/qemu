@@ -53,17 +53,16 @@ jobs:
       - name: Install 002
         run: |
           pacman -Suy --noconfirm
-          pacman -Sy --noconfirm mingw-w64-x86_64-gcc git python
+          pacman -Sy --noconfirm mingw-w64-x86_64-gcc python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
           pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           pacman -Sy --noconfirm ninja
           pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
-          pacman -Sy --noconfirm mingw-w64-x86_64-glib2-devel
-          pacman -Sy --noconfirm mingw-w64-x86_64-glib2
           git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
           cd qemu
           git submodule init
           git submodule update --recursive
-          ./configure --target-list=x86_64-softmmu,i386-softmmu --disable-capstone
+          ./configure --target-list=x86_64-softmmu --disable-capstone
+          echo 'make -j'
           make -j
-          make install
+          echo 'make ok'
