@@ -32,7 +32,7 @@ jobs:
         run: |
           pacman -Syu
           pacman -Su
-          yes Y | pacman -S base-devel --noconfirm
+          pacman -S base-devel --noconfirm
           yes J | pacman -S mingw-w64-x86_64-toolchain --noconfirm
           yes Y | pacman -S git --noconfirm
           yes Y | pacman -S python --noconfirm
