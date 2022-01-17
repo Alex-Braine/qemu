@@ -40,11 +40,10 @@ jobs:
           pacman -S mingw-w64-x86_64-glib2 --noconfirm
           pacman -S mingw-w64-x86_64-gtk3 --noconfirm
           pacman -S mingw-w64-x86_64-SDL2 --noconfirm
-          pacman -S wget --noconfirm
-          echo 'wget'
-          wget https://github.com/qemu/qemu/archive/refs/tags/v6.2.0.tar.gz
-          tar -xzf v6.2.0.tar.gz
-          cd qemu-6.2.0
+          git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
+          # wget https://github.com/qemu/qemu/archive/refs/tags/v6.2.0.tar.gz
+          # tar -xzf v6.2.0.tar.gz
+          cd qemu
           git submodule update --init ui/keycodemapdb
           git submodule update --init capstone
           git submodule update --init dtc
