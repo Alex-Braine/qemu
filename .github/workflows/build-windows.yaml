@@ -32,7 +32,10 @@ jobs:
         run: |
           pacman -Syu
           pacman -Su
-          pacman -S base-devel mingw-w64-x86_64-toolchain git python
+          yes J | pacman -S base-devel
+          yes J | pacman -S mingw-w64-x86_64-toolchain
+          yes J | pacman -S git
+          yes J | pacman -S python
           pacman -S mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           git clone git://git.qemu-project.org/qemu.git
           cd qemu
@@ -41,3 +44,4 @@ jobs:
           git submodule update --init dtc
           ./configure --enable-gtk --enable-sdl --target-list=x86_64-softmmu --disable-werror --disable-stack-protector --disable-capstone
           make
+          qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
