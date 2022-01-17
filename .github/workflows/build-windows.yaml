@@ -28,33 +28,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: c1
-        shell: pwsh
-        run: |
-          ls -l "D:\"
-      
-      - name: c2
-        shell: pwsh
-        run: |
-          ls -l "C:\Program Files (x86)"
-      
-      - name: c3
-        shell: pwsh
-        run: |
-          ls -l "C:\Program Files (x86)\Windows Kits/10/Include/10.0.22000.0/um/"
-          ls -l "C:\Program Files (x86)\Windows Kits/10/Include/10.0.20348.0/um/"
-
-      - name: c4
-        shell: pwsh
-        run: |
-          ls -l "C:\"
-
-      - name: ChildItem
-        shell: pwsh
-        run: |
-          ls -l "C:\Program Files"
-          ls -l "C:\Program Files (x86)"
-          "C:\Program Files (x86)\Windows Kits/10/Include/10.0.14393.0/um/WinHv*" /mingw64/x86_64-w64-mingw32/include/
       - name: Install 001
         if: false
         run: |
@@ -80,7 +53,6 @@ jobs:
           qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
 
       - name: Install 002
-        if: false
         run: |
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
@@ -89,4 +61,6 @@ jobs:
           cd qemu
           git submodule init
           git submodule update --recursive
-          
+          ./configure --target-list=x86_64-softmmu,i386-softmmu --enable-whpx --enable-tools --enable-lzo --enable-bzip2\ --enable-sdl --enable-gtk --enable-vdi --enable-qcow1 --enable-hax --disable-capstone
+          make -j
+          make install
