@@ -31,8 +31,8 @@ jobs:
       - name: ChildItem
         shell: pwsh
         run: |
-          Get-ChildItem "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows Kits\Installed Roots"
-          
+          cp /c/Program\ Files\ \(x86\)/Windows\ Kits/10/Include/10.0.14393.0/um/WinHv* /mingw64/x86_64-w64-mingw32/include/
+
       - name: Install 001
         if: false
         run: |
