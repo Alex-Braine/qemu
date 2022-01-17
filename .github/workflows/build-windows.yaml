@@ -29,6 +29,7 @@ jobs:
           submodules: recursive
 
       - name: Install 001
+        if: false
         run: |
           pacman -Syu
           pacman -Su
@@ -52,24 +53,13 @@ jobs:
           qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
 
       - name: Install 002
-        if: false
+        
         run: |
-          pacman -Syu
-          pacman -Su
-          pacman -S base-devel --noconfirm
-          pacman -S mingw-w64-x86_64-toolchain --noconfirm
-          pacman -S git --noconfirm
-          pacman -S python --noconfirm
-          pacman -S ninja --noconfirm
-          pacman -S mingw-w64-x86_64-glib2 --noconfirm
-          pacman -S mingw-w64-x86_64-gtk3 --noconfirm
-          pacman -S mingw-w64-x86_64-SDL2 --noconfirm
-          curl -OL https://github.com/qemu/qemu/archive/refs/tags/v6.2.0.tar.gz
-          tar -xzf v6.2.0.tar.gz
-          cd qemu-6.2.0
-          git submodule update --init ui/keycodemapdb
-          git submodule update --init capstone
-          git submodule update --init dtc
-          ./configure --enable-gtk --enable-sdl --target-list=x86_64-softmmu --disable-werror --disable-stack-protector --disable-capstone
-          make
-          qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
+          pacman -Suy --noconfirm
+          pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
+          pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
+          git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
+          cd qemu
+          git submodule init
+          git submodule update --recursive
+          Get-ChildItem "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows Kits\Installed Roots"
