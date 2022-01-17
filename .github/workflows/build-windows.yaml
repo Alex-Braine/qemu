@@ -28,7 +28,32 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install
+      - name: Install 001
+        run: |
+          pacman -Syu
+          pacman -Su
+          pacman -S base-devel --noconfirm
+          pacman -S mingw-w64-x86_64-toolchain --noconfirm
+          pacman -S git --noconfirm
+          pacman -S python --noconfirm
+          pacman -S ninja --noconfirm
+          pacman -S mingw-w64-x86_64-glib2 --noconfirm
+          pacman -S mingw-w64-x86_64-gtk3 --noconfirm
+          pacman -S mingw-w64-x86_64-SDL2 --noconfirm
+          pacman -S wget --noconfirm
+          echo 'wget'
+          wget https://github.com/qemu/qemu/archive/refs/tags/v6.2.0.tar.gz
+          tar -xzf v6.2.0.tar.gz
+          cd qemu-6.2.0
+          git submodule update --init ui/keycodemapdb
+          git submodule update --init capstone
+          git submodule update --init dtc
+          ./configure --enable-gtk --enable-sdl --target-list=x86_64-softmmu --disable-werror --disable-stack-protector --disable-capstone
+          make
+          qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
+
+      - name: Install 002
+        if: false
         run: |
           pacman -Syu
           pacman -Su
