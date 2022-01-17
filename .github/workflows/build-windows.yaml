@@ -17,11 +17,6 @@ jobs:
         shell: msys2 {0}
     steps:
       - uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: >-
-            base-devel
-            git
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,6 +51,7 @@ jobs:
         run: |
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
+          pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
           pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           pacman -Sy --noconfirm ninja
           pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
