@@ -12,7 +12,16 @@ jobs:
       matrix:
         arch: [x86_64]
         platform: [windows]
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            base-devel
+            git
       - name: Branch name
         id: branch_name
         run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
