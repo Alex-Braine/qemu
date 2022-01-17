@@ -28,6 +28,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: ChildItem
+        shell: pwsh
+        run: |
+          Get-ChildItem "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows Kits\Installed Roots"
+          
       - name: Install 001
         if: false
         run: |
@@ -53,7 +58,7 @@ jobs:
           qemu/x86_64-softmmu ./qemu-system-x86_64 -L ./../pc-bios
 
       - name: Install 002
-        
+        if: false
         run: |
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
@@ -62,4 +67,4 @@ jobs:
           cd qemu
           git submodule init
           git submodule update --recursive
-          Get-ChildItem "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows Kits\Installed Roots"
+          
