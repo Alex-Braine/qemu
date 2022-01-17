@@ -34,6 +34,7 @@ jobs:
           pacman -Su
           echo 'installing base-devel'
           pacman -S base-devel --noconfirm
+          pacman -S mingw-w64-x86_64-winstorecompat-git --noconfirm
           echo 'installing mingw-w64-x86_64-toolchain'
           yes J | pacman -S mingw-w64-x86_64-toolchain --noconfirm
           echo 'installing git'
