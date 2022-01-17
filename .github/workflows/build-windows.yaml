@@ -40,7 +40,7 @@ jobs:
           pacman -S mingw-w64-x86_64-glib2 --noconfirm
           pacman -S mingw-w64-x86_64-gtk3 --noconfirm
           pacman -S mingw-w64-x86_64-SDL2 --noconfirm
-          git clone git://git.qemu-project.org/qemu.git
+          git clone git://git.qemu-project.org/qemu.git --branch 6.2.0 --single-branch
           cd qemu
           git submodule update --init ui/keycodemapdb
           git submodule update --init capstone
