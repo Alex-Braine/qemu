@@ -28,11 +28,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: c1
-        shell: pwsh
-        run: |
-          Get-ChildItem C:\ -name -recurse WinHv*
-
       - name: Install 001
         if: false
         run: |
