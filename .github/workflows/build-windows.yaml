@@ -32,13 +32,13 @@ jobs:
         run: |
           pacman -Syu
           pacman -Su
-          yes J | pacman -S base-devel
-          yes J | pacman -S mingw-w64-x86_64-toolchain
-          yes J | pacman -S git
-          yes J | pacman -S python
-          yes J | pacman -S mingw-w64-x86_64-glib2
-          yes J | pacman -S mingw-w64-x86_64-gtk3
-          yes J | pacman -S mingw-w64-x86_64-SDL2
+          yes Y | pacman -S base-devel --noconfirm
+          yes J | pacman -S mingw-w64-x86_64-toolchain --noconfirm
+          yes Y | pacman -S git --noconfirm
+          yes Y | pacman -S python --noconfirm
+          yes Y | pacman -S mingw-w64-x86_64-glib2 --noconfirm
+          yes Y | pacman -S mingw-w64-x86_64-gtk3 --noconfirm
+          yes Y | pacman -S mingw-w64-x86_64-SDL2 --noconfirm
           git clone git://git.qemu-project.org/qemu.git
           cd qemu
           git submodule update --init ui/keycodemapdb
