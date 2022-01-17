@@ -36,7 +36,9 @@ jobs:
           pacman -S base-devel --noconfirm
           echo 'installing mingw-w64-x86_64-toolchain'
           yes J | pacman -S mingw-w64-x86_64-toolchain --noconfirm
+          echo 'installing git'
           pacman -S git --noconfirm
+          echo 'installing python'
           pacman -S python --noconfirm
           pacman -S mingw-w64-x86_64-glib2 --noconfirm
           pacman -S mingw-w64-x86_64-gtk3 --noconfirm
