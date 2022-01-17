@@ -36,7 +36,9 @@ jobs:
           yes J | pacman -S mingw-w64-x86_64-toolchain
           yes J | pacman -S git
           yes J | pacman -S python
-          pacman -S mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
+          yes J | pacman -S mingw-w64-x86_64-glib2
+          yes J | pacman -S mingw-w64-x86_64-gtk3
+          yes J | pacman -S mingw-w64-x86_64-SDL2
           git clone git://git.qemu-project.org/qemu.git
           cd qemu
           git submodule update --init ui/keycodemapdb
