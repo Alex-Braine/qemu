@@ -30,12 +30,8 @@ jobs:
       - name: c1
         shell: pwsh
         run: |
-          ls -l "D:\a\_temp\msys64\mingw64"
-      - name: c1
-        shell: pwsh
-        run: |
-          ls -l "D:\a\_temp\msys64\"
-
+          find / -name WinHv*
+          
       - name: Install 001
         if: false
         run: |
