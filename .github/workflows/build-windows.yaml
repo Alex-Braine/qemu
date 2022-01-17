@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-          
+
       - name: c1
         shell: pwsh
         run: |
@@ -63,6 +63,8 @@ jobs:
           pacman -Sy --noconfirm base-devel mingw-w64-x86_64-gcc git python
           pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           pacman -Sy --noconfirm ninja
+          pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
+          pacman -Sy --noconfirm mingw-w64-x86_64-pixman
           git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
           cd qemu
           git submodule init
