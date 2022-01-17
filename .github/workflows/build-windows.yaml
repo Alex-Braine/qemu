@@ -31,3 +31,13 @@ jobs:
       - name: Install
         run: |
           pacman -Syu
+          pacman -Su
+          pacman -S base-devel mingw-w64-x86_64-toolchain git python
+          pacman -S mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
+          git clone git://git.qemu-project.org/qemu.git
+          cd qemu
+          git submodule update --init ui/keycodemapdb
+          git submodule update --init capstone
+          git submodule update --init dtc
+          ./configure --enable-gtk --enable-sdl --target-list=x86_64-softmmu --disable-werror --disable-stack-protector --disable-capstone
+          make
