@@ -27,11 +27,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+          
       - name: c1
         shell: pwsh
         run: |
-          find / -name WinHv*
-          
+          Get-ChildItem C:\ -name -recurse WinHv*
+
       - name: Install 001
         if: false
         run: |
@@ -66,6 +67,6 @@ jobs:
           cd qemu
           git submodule init
           git submodule update --recursive
-          ./configure --target-list=x86_64-softmmu,i386-softmmu --enable-whpx --enable-tools --enable-lzo --enable-bzip2 --enable-sdl --enable-gtk --enable-vdi --enable-qcow1 --enable-hax --disable-capstone
+          ./configure --target-list=x86_64-softmmu,i386-softmmu --disable-capstone
           make -j
           make install
