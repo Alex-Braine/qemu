@@ -28,6 +28,26 @@ jobs:
         with:
           submodules: recursive
 
+      - name: c1
+        shell: pwsh
+        run: |
+          ls -l "C:\Program Files"
+      
+      - name: c2
+        shell: pwsh
+        run: |
+          ls -l "C:\Program Files (x86)"
+      
+      - name: c3
+        shell: pwsh
+        run: |
+          ls -l "C:\Program Files (x86)\Windows Kits/10/Include/10.0.14393.0/um/"
+
+      - name: c4
+        shell: pwsh
+        run: |
+          ls -l "C:\"
+
       - name: ChildItem
         shell: pwsh
         run: |
