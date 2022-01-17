@@ -32,15 +32,11 @@ jobs:
         run: |
           pacman -Syu
           pacman -Su
-          echo 'installing base-devel'
           pacman -S base-devel --noconfirm
-          pacman -S mingw-w64-x86_64-winstorecompat-git --noconfirm
-          echo 'installing mingw-w64-x86_64-toolchain'
           pacman -S mingw-w64-x86_64-toolchain --noconfirm
-          echo 'installing git'
           pacman -S git --noconfirm
-          echo 'installing python'
           pacman -S python --noconfirm
+          pacman -S ninja --noconfirm
           pacman -S mingw-w64-x86_64-glib2 --noconfirm
           pacman -S mingw-w64-x86_64-gtk3 --noconfirm
           pacman -S mingw-w64-x86_64-SDL2 --noconfirm
