@@ -3,7 +3,7 @@ name: Windows
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+-windows" 
+      - "[0-9]+.[0-9]+.[0-9]+-win" 
 
 jobs:
   build:
@@ -39,7 +39,6 @@ jobs:
           ls -lt /mingw64/bin/
           BUILD_PATH=$HOME/QEMU-bin
           mkdir bin
-          mkdir libs
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm mingw-w64-x86_64-gcc python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
@@ -58,13 +57,13 @@ jobs:
           make install
           echo 'make install ok'
           cd ../
-          cp /mingw64/bin/*.dll libs/
+          cp /mingw64/bin/*.dll bin/
           mv $BUILD_PATH/share .
           mv $BUILD_PATH/*.exe bin/
       
       - name: Compress
         run: |
-          tar -czvf "qemu-${{ steps.branch_name.outputs.TAG }}-windows-x86_64.tgz" libs bin share
+          tar -czvf "qemu-${{ steps.branch_name.outputs.TAG }}-windows-x86_64.tgz" bin share
       
       - name: Release
         uses: softprops/action-gh-release@v1
