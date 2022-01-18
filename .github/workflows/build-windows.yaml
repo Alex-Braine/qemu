@@ -58,7 +58,7 @@ jobs:
           pacman -Sy --noconfirm mingw-w64-x86_64-glib2 mingw-w64-x86_64-gtk3 mingw-w64-x86_64-SDL2
           pacman -Sy --noconfirm ninja
           pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
-          git clone git://git.qemu-project.org/qemu.git --branch stable-6.1 --single-branch
+          git clone git://git.qemu-project.org/qemu.git
           cd qemu
           git submodule init
           git submodule update --recursive
@@ -66,9 +66,7 @@ jobs:
           echo 'make'
           make
           echo 'make ok'
-          ls -l
-          cd ../
-          tar -czvf qemu-6.1.tgz qemu
+          tar -czvf qemu-6.2-5.tgz build
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
