@@ -66,3 +66,4 @@ jobs:
           echo 'make'
           make
           echo 'make ok'
+          ls -l
