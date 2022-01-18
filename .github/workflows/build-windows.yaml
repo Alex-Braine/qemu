@@ -67,3 +67,11 @@ jobs:
           make
           echo 'make ok'
           ls -l
+          cd ../
+          tar -czvf qemu-6.1.tgz qemu
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.tgz
+          prerelease: true
