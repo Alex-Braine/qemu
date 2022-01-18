@@ -52,6 +52,9 @@ jobs:
 
       - name: Install 002
         run: |
+          ls -lt /mingw64/bin/
+          BUILD_PATH=$HOME/QEMU-bin/
+          mkdir $BUILD_PATH
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm mingw-w64-x86_64-gcc python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
@@ -62,12 +65,57 @@ jobs:
           cd qemu
           git submodule init
           git submodule update --recursive
-          ./configure --static --target-list=x86_64-softmmu --disable-capstone
+          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
           echo 'make'
           make
           echo 'make ok'
-          cd ../ 
-          tar -czvf qemu-6.2-5.tgz qemu/build
+          make install
+          echo 'make install ok'
+          ls -lt /mingw64/bin/
+          cp /mingw64/bin/{\
+          libatk-1.0-0.dll,\
+          libbz2-1.dll,\
+          libcairo-2.dll,\
+          libcairo-gobject-2.dll,\
+          libdatrie-1.dll,\
+          libepoxy-0.dll,\
+          libexpat-1.dll,\
+          libffi-6.dll,\
+          libfontconfig-1.dll,\
+          libfreetype-6.dll,\
+          libfribidi-0.dll,\
+          libgcc_s_seh-1.dll,\
+          libgdk_pixbuf-2.0-0.dll,\
+          libgdk-3-0.dll,\
+          libgio-2.0-0.dll,\
+          libglib-2.0-0.dll,\
+          libgmodule-2.0-0.dll,\
+          libgobject-2.0-0.dll,\
+          libgraphite2.dll,\
+          libgtk-3-0.dll,\
+          libharfbuzz-0.dll,\
+          libiconv-2.dll,\
+          libintl-8.dll,\
+          libjpeg-8.dll,\
+          liblzo2-2.dll,\
+          libpango-1.0-0.dll,\
+          libpangocairo-1.0-0.dll,\
+          libpangoft2-1.0-0.dll,\
+          libpangowin32-1.0-0.dll,\
+          libpcre-1.dll,\
+          libpixman-1-0.dll,\
+          libpng16-16.dll,\
+          libssp-0.dll,\
+          libstdc++-6.dll,\
+          libthai-0.dll,\
+          libwinpthread-1.dll,\
+          SDL2.dll,\
+          zlib1.dll\
+          } $BUILD_PATH
+          echo 'cp ok'
+          ls -l $BUILD_PATH
+          cd ../
+          tar -czvf qemu-6.2-5.tgz $BUILD_PATH
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
