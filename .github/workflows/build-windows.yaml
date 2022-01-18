@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: Branch name
         id: branch_name
+        shell: bash
         run: |
           echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
 
