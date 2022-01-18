@@ -66,7 +66,7 @@ jobs:
           echo 'make'
           make
           echo 'make ok'
-          cd ../
+          cd ../ 
           tar -czvf qemu-6.2-5.tgz qemu/build
       - name: Release
         uses: softprops/action-gh-release@v1
