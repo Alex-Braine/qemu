@@ -37,7 +37,7 @@ jobs:
       - name: Build
         run: |
           ls -lt /mingw64/bin/
-          BUILD_PATH=$HOME/QEMU-bin/
+          BUILD_PATH=$HOME/QEMU-bin
           mkdir bin
           mkdir libs
           pacman -Suy --noconfirm
@@ -51,7 +51,7 @@ jobs:
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
           git submodule init
           git submodule update --recursive
-          ./configure --prefix=../bin --disable-capstone
+          ./configure --prefix=$BUILD_PATH --disable-capstone
           echo 'make'
           make
           echo 'make ok'
@@ -59,7 +59,8 @@ jobs:
           echo 'make install ok'
           cd ../
           cp /mingw64/bin/*.dll libs/
-          mv bin/share .
+          mv $BUILD_PATH/share .
+          mv $BUILD_PATH/*.exe bin/
       
       - name: Compress
         run: |
