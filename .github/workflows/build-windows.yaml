@@ -62,6 +62,7 @@ jobs:
           pacman -Sy --noconfirm ninja
           pacman -Sy --noconfirm mingw-w64-x86_64-diffutils
           git clone git://git.qemu-project.org/qemu.git
+          git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
           cd qemu
           git submodule init
           git submodule update --recursive
