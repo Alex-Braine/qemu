@@ -62,11 +62,12 @@ jobs:
           cd qemu
           git submodule init
           git submodule update --recursive
-          ./configure --target-list=x86_64-softmmu --disable-capstone
+          ./configure --static --target-list=x86_64-softmmu --disable-capstone
           echo 'make'
           make
           echo 'make ok'
-          tar -czvf qemu-6.2-5.tgz build
+          cd ../
+          tar -czvf qemu-6.2-5.tgz qemu/build
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
