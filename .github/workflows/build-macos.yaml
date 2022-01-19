@@ -20,7 +20,7 @@ jobs:
         run: |
           echo ::set-output name=QEMU_VERSION::$(echo ${GITHUB_REF#refs/tags/} | cut -d - -f 1) && \
           echo ::set-output name=TAG::${GITHUB_REF#refs/tags/} && \
-          case `echo ${GITHUB_REF#refs/tags/} | cut -d - -f 2` in 'cocoa') echo ::set-output name=VARIANT::$(echo '+cocoa');; 'gtk3') echo ::set-output name=VARIANT::$(echo '+gtk3 +sdl2');; esac
+          case `echo ${GITHUB_REF#refs/tags/} | cut -d - -f 2` in 'cocoa') echo ::set-output name=VARIANT::$(echo '+cocoa');; 'gtk3') echo ::set-output name=VARIANT::$(echo '+gtk3 +sdl2 -cocoa');; esac
 
       - name: Checkout
         uses: actions/checkout@v2
