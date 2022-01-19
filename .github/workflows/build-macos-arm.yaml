@@ -38,9 +38,9 @@ jobs:
           ls -l /opt/local/etc/macports/
           sudo echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
-          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }}
-        
-
+          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +vnc ${{ steps.branch_name.outputs.VARIANT }}
+          cat /opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_macports_release_tarballs_ports_emulators_qemu/qemu/main.log
+          
           mkdir bin 
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
@@ -57,10 +57,6 @@ jobs:
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
       
-      - name: always
-        if: always()
-        run: |
-          cat /opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_macports_release_tarballs_ports_emulators_qemu/qemu/main.log
       - name: Compress
         run: |
           tar -czvf `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" | sed 's/ //g'` libs bin share
