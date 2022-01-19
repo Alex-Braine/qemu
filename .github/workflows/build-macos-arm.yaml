@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo chown runner /opt/local/etc/macports/macports.conf 
+          sudo chmod 0777 /opt/local/etc/macports/macports.conf 
           ls -l /opt/local/etc/macports/
           sudo echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
