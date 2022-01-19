@@ -34,11 +34,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo chmod 0777 /opt/local/etc/macports/macports.conf 
+          sudo chown runner /opt/local/etc/macports/macports.conf 
           ls -l /opt/local/etc/macports/
           sudo echo 'build_arch arm64' >> /opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
-          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
+          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }} 2>/dev/null
+          cat /opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_macports_release_tarballs_ports_emulators_qemu/qemu/main.log
+          
           mkdir bin 
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
