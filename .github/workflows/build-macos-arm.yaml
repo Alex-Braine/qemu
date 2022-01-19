@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo 'build_arch arm64' >> /System/Volumes/Data/opt/local/etc/macports/macports.conf
+          sudo echo 'build_arch arm64' >> /System/Volumes/Data/opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
           sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
           mkdir bin 
