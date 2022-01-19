@@ -63,7 +63,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo chown runner /opt/local/etc/macports/macports.conf 
+          sudo chown runner /opt/local/etc/macports/macports.conf
           sudo echo 'build_arch ${{ matrix.arch }}' >> /opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
           sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} ${{ steps.branch_name.outputs.VARIANT }}
