@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-11
     strategy:
       matrix:
-        arch: [x86_64]
+        arch: [x86_64, arm64]
         platform: [macos]
     steps:
       - name: Branch name
@@ -63,8 +63,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo chown runner /opt/local/etc/macports/macports.conf 
+          sudo echo 'build_arch ${{ matrix.arch }}' >> /opt/local/etc/macports/macports.conf
           export PATH="/opt/local/bin:$PATH"
-          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
+          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} ${{ steps.branch_name.outputs.VARIANT }}
           mkdir bin
           cp /opt/local/bin/qemu-system-x86_64 bin/
           cp /opt/local/bin/qemu-system-aarch64 bin/
