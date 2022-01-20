@@ -83,15 +83,15 @@ jobs:
           echo '@@@@@@@@@@@@@@@@@@@'
           chmod +x scripts/fix_mac.sh
           scripts/fix_mac.sh
-      
-      - name: Compress
-        run: |
-          tar -czvf `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" | sed 's/ //g'` libs bin share
 
       - name: always
         if: always()
         run: |
           cat /opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_macports_release_tarballs_ports_graphics_fontconfig/fontconfig/work/fontconfig-2.13.1/config.log
+      
+      - name: Compress 
+        run: |
+          tar -czvf `echo "qemu-${{ steps.branch_name.outputs.TAG }}-${{ matrix.platform }}-${{ matrix.arch }}.tgz" | sed 's/ //g'` libs bin share
 
       - name: Release
         uses: softprops/action-gh-release@v1
