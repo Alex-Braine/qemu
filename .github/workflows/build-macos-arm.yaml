@@ -15,7 +15,7 @@ jobs:
         arch: [arm64]
         platform: [macos]
     steps:
-      - name: Branch name
+      - name: Branch name 
         id: branch_name
         run: |
           echo ::set-output name=QEMU_VERSION::$(echo ${GITHUB_REF#refs/tags/} | cut -d - -f 1) && \
