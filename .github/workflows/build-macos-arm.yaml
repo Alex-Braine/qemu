@@ -9,7 +9,7 @@ on:
 jobs:
   build-macos-ports:
     name: Build0
-    runs-on: macos-12
+    runs-on: self-hosted
     strategy:
       matrix:
         arch: [arm64]
