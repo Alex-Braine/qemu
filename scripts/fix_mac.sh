@@ -5,7 +5,7 @@ fix() {
    LIB_NAME=$(basename "$OLD_LIB_PATH")
    LIB_DIR=$(dirname "$OLD_LIB_PATH")
 
-   #sudo chown runner $CHANGEABLE_FILE
+   sudo chown oleg $CHANGEABLE_FILE
    echo "LIB_DIR = $LIB_DIR / ${LIB_DIR:0:18}"
    if [[ "$LIB_DIR" == "/opt/local/lib" || ${LIB_DIR:0:18} == "/opt/local/libexec" ]]; then
        NEW_RELATIVE_LIB_PATH="@executable_path/../libs/$LIB_NAME"
@@ -22,7 +22,7 @@ fixup () {
     rm -rf $NEW_LIB_PATH
     echo "cp $FILE $NEW_LIB_PATH"
     cp "$FILE" "$NEW_LIB_PATH"
-    #sudo chown runner $NEW_LIB_PATH
+    sudo chown oleg $NEW_LIB_PATH
     ls -l $NEW_LIB_PATH
 
     echo "install_name_tool -id @executable_path/../$NEW_LIB_PATH $NEW_LIB_PATH"
