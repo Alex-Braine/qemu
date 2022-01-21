@@ -60,7 +60,7 @@ jobs:
           codesign -f -s - bin/qemu-system-x86_64
           #codesign -f -s - bin/qemu-system-aarch64
           codesign -f -s - bin/qemu-img 
-          cp /opt/local/bin/qemu-system-aarch64 bin/
+          cp /opt/local/bin/qemu-system-aarch64 bin/ 
 
       - name: Compress
         run: |
