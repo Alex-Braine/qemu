@@ -59,7 +59,7 @@ jobs:
           scripts/fix_mac.sh
           codesign -f -s - bin/qemu-system-x86_64
           codesign -f -s - bin/qemu-system-aarch64
-          codesign -f -s - bin/qemu-img
+          codesign -f -s - bin/qemu-img 
       
       - name: Compress
         run: |
