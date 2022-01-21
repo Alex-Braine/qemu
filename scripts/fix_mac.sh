@@ -11,6 +11,7 @@ fix() {
        NEW_RELATIVE_LIB_PATH="@executable_path/../libs/$LIB_NAME"
        echo "install_name_tool -change $OLD_LIB_PATH $NEW_RELATIVE_LIB_PATH $CHANGEABLE_FILE"
        install_name_tool -change "$OLD_LIB_PATH" "$NEW_RELATIVE_LIB_PATH" "$CHANGEABLE_FILE"
+       codesign -f -s - "$CHANGEABLE_FILE"
    fi
 }
 
@@ -27,6 +28,7 @@ fixup () {
 
     echo "install_name_tool -id @executable_path/../$NEW_LIB_PATH $NEW_LIB_PATH"
     install_name_tool -id "@executable_path/../$NEW_LIB_PATH" "$NEW_LIB_PATH"
+    codesign -f -s - "$NEW_LIB_PATH"
     LIBS_LIST=$(otool -L "$FILE" | tail -n +2 | cut -d ' ' -f 1 | awk '{$1=$1};1')
     for LIB in $LIBS_LIST
     do
