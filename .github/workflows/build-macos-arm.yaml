@@ -41,7 +41,7 @@ jobs:
           sudo port -f activate gettext @0.21_0
           sudo port clean qemu
           sudo port uninstall qemu
-          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} ${{ steps.branch_name.outputs.VARIANT }}
+          sudo port install qemu @${{ steps.branch_name.outputs.QEMU_VERSION }} +curses +usb +curl +vnc +vde +lzo +lzfse +snappy +zstd +ssh ${{ steps.branch_name.outputs.VARIANT }}
           mkdir bin 
           #cp /opt/local/bin/qemu-system-x86_64 bin/
           #cp /opt/local/bin/qemu-system-aarch64 bin/
