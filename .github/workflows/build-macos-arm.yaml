@@ -49,7 +49,7 @@ jobs:
           mkdir -p share
           ls -l /opt/local/share/ 
           echo ':::::::::::::::::'
-          sudo chown -R oleg /opt/local/share/qemu
+          #sudo chown -R oleg /opt/local/share/qemu
           cp -r /opt/local/share/qemu share/
           #ls -l /usr/local/share/qemu
           echo '#################'
