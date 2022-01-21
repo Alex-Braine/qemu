@@ -77,7 +77,6 @@ fixup_all () {
         fixup $LIB
     done
 
-
     LIB_LIST=$(find -E "/opt/local/libexec" -type f  -iregex '.*\.(dylib|so)')
     for LIB in $LIB_LIST
     do
