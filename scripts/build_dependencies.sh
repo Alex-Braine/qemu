@@ -463,7 +463,7 @@ build_qemu () {
     pwd="$(pwd)"
     cd "$QEMU_DIR"
     echo "${GREEN}Configuring QEMU...${NC}"
-    ./configure --prefix="$PREFIX" --host="$CHOST" --cross-prefix="" $@
+    ./configure --prefix="$PREFIX" --host="$CHOST" --cross-prefix="" $@ --enable-parallels
     echo "${GREEN}Building QEMU...${NC}"
     gmake "$MAKEFLAGS"
     echo "${GREEN}Installing QEMU...${NC}"
