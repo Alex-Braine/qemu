@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Qemu macos
+    name: Build Qemu macos 
     runs-on: macos-11
     strategy:
       matrix:
