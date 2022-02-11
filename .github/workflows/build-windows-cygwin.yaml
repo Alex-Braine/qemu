@@ -43,7 +43,6 @@ jobs:
           apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel
       
       - name: Install glib2
-        if: false
         run: |
           git clone https://github.com/GNOME/glib.git
           cd glib
