@@ -40,7 +40,7 @@ jobs:
 
       - name: Install libs
         run: |
-          apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel
+          apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson
       
       - name: Install glib2
         run: |
