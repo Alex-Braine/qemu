@@ -44,22 +44,11 @@ jobs:
       
       - name: Install glib2
         run: |
-          git clone https://github.com/GNOME/glib.git
+          wget https://download.gnome.org/sources/glib/2.71/glib-2.71.1.tar.xz
+          tar -xf glib-2.71.1.tar.xz
+          cd glib-2.71.1
           cd glib
-          git reset --hard 4bd23d1b2676d7b60f6e9ef1013323e90bb0aacf
-          echo "[binaries]" >> cross
-          echo "c = 'gcc'" >> cross
-          echo "cpp = 'g++'" >> cross
-          echo "[host_machine]" >> cross
-          echo "system = 'windows'" >> cross
-          echo "cpu_family = 'x86_64'" >> cross
-          echo "endian = 'little'" >> cross
-          echo "cpu = 'x86_64'" >> cross
-          echo "[built-in options]" >> cross
-          echo "c_args = '-Wno-error=implicit-function-declaration'" >> cross
-          cat cross
-
-          meson _build --cross-file=./cross                         
+          meson _build                        
           ninja -C _build
           ninja -C _build install
 
