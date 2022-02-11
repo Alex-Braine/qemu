@@ -1,4 +1,4 @@
-508c508
-< elif check_define __OpenBSD__ ; then
+528c528
+<   targetos='bogus'
 ---
-> elif check_define __OpenBSD__ || check_define __CYGWIN__ ; then
+>   targetos='MINGW32'

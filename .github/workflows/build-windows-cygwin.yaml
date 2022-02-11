@@ -40,7 +40,7 @@ jobs:
 
       - name: Install libs
         run: |
-          apt-cyg install libffi-devel libpcre1 pcre gcc-core binutils cmake gcc-g++ automake autoconf libtool python  bison coreutils libiconv libiconv-devel gettext ncurses ninja byacc libncurses-devel lynx gettext-devel libreadline-devel wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson zlib-devel
+          apt-cyg install libffi-devel libpcre1 pcre gcc-core binutils cmake gcc-g++ automake autoconf libtool python  bison coreutils libiconv libiconv-devel gettext ncurses ninja byacc libncurses-devel lynx gettext-devel libreadline-devel wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson zlib-devel libpixman1-devel
           
           export PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):/usr/local/lib/pkgconfig
       
@@ -50,7 +50,7 @@ jobs:
           wget https://download.gnome.org/sources/glib/2.71/glib-2.71.1.tar.xz
           tar -xf glib-2.71.1.tar.xz
           cd glib-2.71.1
-          meson _build                        
+          meson _build -Dglib_debug=false -Dtests=false       
           ninja -C _build
           ninja -C _build install
 
@@ -67,7 +67,7 @@ jobs:
           patch configure ../qemu-cygwin/configure.patch
           git submodule init
           git submodule update --recursive
-          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
+          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone --disable-werror
           echo 'make'
           make
           echo 'make ok'
