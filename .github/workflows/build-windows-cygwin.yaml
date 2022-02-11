@@ -46,6 +46,7 @@ jobs:
       
       - name: Install glib2
         run: |
+          echo $PKG_CONFIG_PATH
           wget https://download.gnome.org/sources/glib/2.71/glib-2.71.1.tar.xz
           tar -xf glib-2.71.1.tar.xz
           cd glib-2.71.1
