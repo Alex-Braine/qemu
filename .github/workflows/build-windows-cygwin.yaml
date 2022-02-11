@@ -41,6 +41,16 @@ jobs:
       - name: Install libs
         run: |
           apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel
+      
+      - name: Install glib2
+        if: false
+        run: |
+          git clone https://github.com/GNOME/glib.git
+          cd glib
+          git reset --hard 4bd23d1b2676d7b60f6e9ef1013323e90bb0aacf
+          meson _build                            
+          ninja -C _build        
+          ninja -C _build install     
 
       - name: Build
         run: |
