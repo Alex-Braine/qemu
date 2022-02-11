@@ -1,0 +1,4 @@
+508c508
+< elif check_define __OpenBSD__ ; then
+---
+> elif check_define __OpenBSD__ || __CYGWIN__ ; then
