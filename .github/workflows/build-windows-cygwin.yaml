@@ -40,16 +40,28 @@ jobs:
 
       - name: Install libs
         run: |
-          apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson
+          apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson zlib-devel
       
       - name: Install glib2
         run: |
           git clone https://github.com/GNOME/glib.git
           cd glib
           git reset --hard 4bd23d1b2676d7b60f6e9ef1013323e90bb0aacf
-          meson _build                            
-          ninja -C _build        
-          ninja -C _build install     
+          echo "[binaries]" >> cross
+          echo "c = 'gcc'" >> cross
+          echo "cpp = 'g++'" >> cross
+          echo "[host_machine]" >> cross
+          echo "system     = 'windows'" >> cross
+          echo "cpu_family = 'x86_64'" >> cross
+          echo "endian = 'little'" >> cross
+          echo "cpu = 'x86_64'" >> cross
+          echo "[built-in options]" >> cross
+          echo "c_args = '-Wno-error=implicit-function-declaration" >> cross
+          echo "c_link_args = '-lpcre2-8'" >> cross
+
+          meson _build --cross-file=./cross                         
+          ninja -C _build
+          ninja -C _build install
 
       - name: Build
         run: |
