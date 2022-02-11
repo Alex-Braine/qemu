@@ -50,7 +50,7 @@ jobs:
           wget https://download.gnome.org/sources/glib/2.71/glib-2.71.1.tar.xz
           tar -xf glib-2.71.1.tar.xz
           cd glib-2.71.1
-          meson _build -Dglib_debug=false -Dtests=false       
+          meson _build -Dtests=false       
           ninja -C _build
           ninja -C _build install
 
