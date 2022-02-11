@@ -40,7 +40,7 @@ jobs:
 
       - name: Install libs
         run: |
-          apt-cyg install libffi-devel gcc-core binutils cmake gcc-g++ automake autoconf libtool python  bison coreutils libiconv libiconv-devel gettext ncurses ninja byacc libncurses-devel lynx gettext-devel libreadline-devel wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson zlib-devel
+          apt-cyg install libffi-devel libpcre1 pcre gcc-core binutils cmake gcc-g++ automake autoconf libtool python  bison coreutils libiconv libiconv-devel gettext ncurses ninja byacc libncurses-devel lynx gettext-devel libreadline-devel wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel meson zlib-devel  
       
       - name: Install glib2
         run: |
