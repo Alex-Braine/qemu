@@ -43,7 +43,7 @@ jobs:
           apt-cyg install gcc-core flexdll binutils cmake gcc-g++ automake autoconf libtool python flex bison coreutils libiconv libiconv-devel gettext po4a ncurses ninja genisoimage byacc libncurses-devel lynx gperf gettext-devel libreadline-devel  findutils-debuginfo wget libxml2-devel file-devel libtirpc-devel libjansson-devel pcre2 libpcre2-devel
       
       - name: Install glib2
-        if: false
+       if: false
         run: |
           git clone https://github.com/GNOME/glib.git
           cd glib
@@ -62,7 +62,7 @@ jobs:
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
           git submodule init
           git submodule update --recursive
-          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
+          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone --toolchain=msvc --target-os=openbsd --arch=x86_64 --enable-shared
           echo 'make'
           make
           echo 'make ok'
