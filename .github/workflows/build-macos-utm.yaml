@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-11
     strategy:
       matrix:
-        arch: [arm64, x86_64]
+        arch: [arm64, x86_64] 
         platform: [macos]
     steps:
       - name: Branch name
