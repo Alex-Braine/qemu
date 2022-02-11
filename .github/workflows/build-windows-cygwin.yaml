@@ -51,13 +51,14 @@ jobs:
           echo "c = 'gcc'" >> cross
           echo "cpp = 'g++'" >> cross
           echo "[host_machine]" >> cross
-          echo "system     = 'windows'" >> cross
+          echo "system = 'windows'" >> cross
           echo "cpu_family = 'x86_64'" >> cross
           echo "endian = 'little'" >> cross
           echo "cpu = 'x86_64'" >> cross
           echo "[built-in options]" >> cross
-          echo "c_args = '-Wno-error=implicit-function-declaration" >> cross
+          echo "c_args = '-Wno-error=implicit-function-declaration'" >> cross
           echo "c_link_args = '-lpcre2-8'" >> cross
+          cat cross
 
           meson _build --cross-file=./cross                         
           ninja -C _build
