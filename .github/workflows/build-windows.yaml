@@ -55,7 +55,7 @@ jobs:
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
           patch util/qemu-sockets.c ../qemu-win/util/qemu-sockets.c.patch
           patch chardev/char-socket.c ../qemu-win/chardev/char-socket.c.patch
-          patch unit/test-util-sockets.c ../qemu-win/tests/unit/test-util-sockets.c.patch
+          patch tests/unit/test-util-sockets.c ../qemu-win/tests/unit/test-util-sockets.c.patch
           cat util/qemu-sockets.c
           git submodule init
           git submodule update --recursive
