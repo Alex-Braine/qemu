@@ -17,12 +17,6 @@ jobs:
         shell: msys2 {0}
     steps:
 
-      - name: Find
-        shell: pwsh 
-        run: |
-          Get-ChildItem -Path C:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
-          Get-ChildItem -Path D:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
-
       - name: Branch name
         id: branch_name
         shell: bash
@@ -62,7 +56,7 @@ jobs:
           patch util/qemu-sockets.c ../qemu-win/util/qemu-sockets.c.patch
           patch chardev/char-socket.c ../qemu-win/chardev/char-socket.c.patch
           cat util/qemu-sockets.c
-          cp ../qemu-win/afunix.h include/qemu/
+          cp ../qemu-win/afunix.2.0.h include/qemu/afunix.h
           git submodule init
           git submodule update --recursive
           ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
