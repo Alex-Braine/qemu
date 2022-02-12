@@ -54,7 +54,7 @@ jobs:
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
           patch util/qemu-sockets.c ../qemu-win/util/qemu-sockets.c.patch
           patch chardev/char-socket.c ../qemu-win/chardev/char-socket.c.patch
-          cp qemu-win/afunix.h include/qemu/
+          cp ../qemu-win/afunix.h include/qemu/
           git submodule init
           git submodule update --recursive
           ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
