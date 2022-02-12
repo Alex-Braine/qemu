@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-2019
     strategy:
       matrix:
         arch: [x86_64]
@@ -21,10 +21,10 @@ jobs:
         shell: pwsh 
         run: |
           dir C:\msys64\mingw64\include\
-          dir "C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0"
-          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\shared\afunix.h"
+          dir "C:\Program Files (x86)\Windows Kits\10\Include"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\afunix.h"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared\afunix.h"
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\afunix.h"
-          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\afunix.h"
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared\afunix.h"
 
       - name: Branch name
