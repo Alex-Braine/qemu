@@ -18,7 +18,6 @@ jobs:
     steps:
 
       - name: Find
-        if: false
         shell: pwsh 
         run: |
           Get-ChildItem -Path D:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
