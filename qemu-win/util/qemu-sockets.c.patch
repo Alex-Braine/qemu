@@ -6,33 +6,34 @@
 >     case AF_UNIX:  return NETWORK_ADDRESS_FAMILY_UNIX;
 377a379
 >         printf("conecting\n");
-384c386,387
+384c386,388
 <         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
 ---
+>         qemu_log("[inet_connect_addr] Failed to connect");
 >         sleep(600);
->         error_setg_errno(errp, errno, "[inet_connect_addr] Failed to connect to '%s:%s'",
-579c582
+>         error_setg_errno(errp, errno, "x[inet_connect_addr] Failed to connect to '%s:%s'",
+579c583
 <         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
 ---
 >         error_setg_errno(errp, errno, "[inet_dgram_saddr] Failed to connect to '%s:%s'",
-785c788
+785c789
 <         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
 ---
 >         error_setg_errno(errp, errno, "[vsock_connect_addr] Failed to connect to '%s:%s'",
-884,885d886
+884,885d887
 < #ifndef _WIN32
 < 
-916c917
+916c918
 <     sock = qemu_socket(PF_UNIX, SOCK_STREAM, 0);
 ---
 >     sock = qemu_socket(AF_UNIX, SOCK_STREAM, 0);
-1008c1009
+1008c1010
 <     sock = qemu_socket(PF_UNIX, SOCK_STREAM, 0);
 ---
 >     sock = socket(AF_UNIX, SOCK_STREAM, 0);
-1024d1024
+1024d1025
 <     memset(&un, 0, sizeof(un));
-1027,1036c1027
+1027,1036c1028
 < 
 <     if (abstract) {
 <         un.sun_path[0] = '\0';
@@ -45,14 +46,16 @@
 <     }
 ---
 >     strncpy(un.sun_path, saddr->path, pathlen);
-1039a1031
+1039a1032,1033
+>         qemu_log("[unix_connect_saddr] conecting");
 >         printf("[unix_connect_saddr] conecting\n");
-1046c1038,1039
+1046c1040,1042
 <         error_setg_errno(errp, -rc, "Failed to connect to '%s'",
 ---
+>         qemu_log("[unix_connect_saddr] Failed to connect");
 >         sleep(600);
->         error_setg_errno(errp, -rc, "[unix_connect_saddr] Failed to connect to '%s'",
-1058,1076d1050
+>         error_setg_errno(errp, -rc, "x[unix_connect_saddr] Failed to connect to '%s'",
+1058,1076d1053
 < #else
 < 
 < static int unix_listen_saddr(UnixSocketAddress *saddr,
@@ -72,15 +75,15 @@
 < }
 < #endif
 < 
-1096a1071
+1096a1074
 >     printf("[unix_connect]\n");
-1195a1171
+1195a1174
 >         printf("[socket_connect]\n");
-1339d1314
+1339d1317
 < #ifndef WIN32
-1366d1340
+1366d1343
 < #endif /* WIN32 */
-1398d1371
+1398d1374
 < #ifndef WIN32
-1401d1373
+1401d1376
 < #endif /* WIN32 */
