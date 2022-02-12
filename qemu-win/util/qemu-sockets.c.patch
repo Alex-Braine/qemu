@@ -1,0 +1,33 @@
+34a35
+> #include "afunix.h"
+884,885d884
+< #ifndef _WIN32
+< 
+1058,1076d1056
+< #else
+< 
+< static int unix_listen_saddr(UnixSocketAddress *saddr,
+<                              int num,
+<                              Error **errp)
+< {
+<     error_setg(errp, "unix sockets are not available on windows");
+<     errno = ENOTSUP;
+<     return -1;
+< }
+< 
+< static int unix_connect_saddr(UnixSocketAddress *saddr, Error **errp)
+< {
+<     error_setg(errp, "unix sockets are not available on windows");
+<     errno = ENOTSUP;
+<     return -1;
+< }
+< #endif
+< 
+1339d1318
+< #ifndef WIN32
+1366d1344
+< #endif /* WIN32 */
+1398d1375
+< #ifndef WIN32
+1401d1377
+< #endif /* WIN32 */
