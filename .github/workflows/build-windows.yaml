@@ -20,8 +20,8 @@ jobs:
       - name: Find
         shell: pwsh 
         run: |
-          Get-ChildItem -Path D:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
           Get-ChildItem -Path C:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
+          Get-ChildItem -Path D:\ -Filter afunix.h -Recurse -ErrorAction SilentlyContinue -Force
 
       - name: Branch name
         id: branch_name
