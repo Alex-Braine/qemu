@@ -57,7 +57,6 @@ jobs:
           patch chardev/char-socket.c ../qemu-win/chardev/char-socket.c.patch
           patch unit/test-util-sockets.c ../qemu-win/tests/unit/test-util-sockets.c.patch
           cat util/qemu-sockets.c
-          cp ../qemu-win/afunix.2.0.h include/qemu/afunix.h
           git submodule init
           git submodule update --recursive
           ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
