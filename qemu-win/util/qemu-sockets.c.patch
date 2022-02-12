@@ -1,8 +1,24 @@
 34a35
 > #include "afunix.h"
+384c385
+<         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
+---
+>         error_setg_errno(errp, errno, "[inet_connect_addr] Failed to connect to '%s:%s'",
+579c580
+<         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
+---
+>         error_setg_errno(errp, errno, "[inet_dgram_saddr] Failed to connect to '%s:%s'",
+785c786
+<         error_setg_errno(errp, errno, "Failed to connect to '%s:%s'",
+---
+>         error_setg_errno(errp, errno, "[vsock_connect_addr] Failed to connect to '%s:%s'",
 884,885d884
 < #ifndef _WIN32
 < 
+1046c1045
+<         error_setg_errno(errp, -rc, "Failed to connect to '%s'",
+---
+>         error_setg_errno(errp, -rc, "[unix_connect_saddr] Failed to connect to '%s'",
 1058,1076d1056
 < #else
 < 

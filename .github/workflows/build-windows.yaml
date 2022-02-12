@@ -17,10 +17,9 @@ jobs:
         shell: msys2 {0}
     steps:
       - name: Cat
-        if: true
+        if: false
         shell: pwsh 
         run: |
-          echo "----------------------------"
           type C:\msys64\mingw64\x86_64-w64-mingw32\include\afunix.h
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\afunix.h"
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared\afunix.h"
