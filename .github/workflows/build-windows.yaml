@@ -20,8 +20,8 @@ jobs:
         if: true
         shell: pwsh 
         run: |
-          dir C:\msys64\mingw64\include\
-          dir "C:\Program Files (x86)\Windows Kits\10\Include"
+          echo "----------------------------"
+          type C:\msys64\mingw64\include\afunix.h
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\afunix.h"
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared\afunix.h"
           type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\afunix.h"
