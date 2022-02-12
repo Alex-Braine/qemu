@@ -56,7 +56,6 @@ jobs:
           patch util/qemu-sockets.c ../qemu-win/util/qemu-sockets.c.patch
           patch chardev/char-socket.c ../qemu-win/chardev/char-socket.c.patch
           patch tests/unit/test-util-sockets.c ../qemu-win/tests/unit/test-util-sockets.c.patch
-          cat util/qemu-sockets.c
           git submodule init
           git submodule update --recursive
           ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone

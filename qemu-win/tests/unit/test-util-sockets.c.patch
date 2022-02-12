@@ -1,8 +1,10 @@
-79d78
+26a27
+> #include "afunix.h"
+79d79
 < #ifndef _WIN32
-231d229
+231d230
 < #endif
-357d354
+357d355
 < #ifndef _WIN32
-370d366
+370d367
 < #endif
