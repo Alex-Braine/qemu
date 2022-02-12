@@ -31,7 +31,7 @@
 <     sock = qemu_socket(PF_UNIX, SOCK_STREAM, 0);
 ---
 >     sock = qemu_socket(AF_UNIX, SOCK_STREAM, 0);
-1008c1014,1024
+1008c1014,1026
 <     sock = qemu_socket(PF_UNIX, SOCK_STREAM, 0);
 ---
 >     int Result = 0;
@@ -40,14 +40,16 @@
 >     // Initialize Winsock
 >     Result = WSAStartup(MAKEWORD(2, 2), &WsaData);
 >     if (Result != 0) {
+>         qemu_log("WSAStartup failed with error\n");
 >         printf("WSAStartup failed with error: %d\n", Result);
->         goto Exit;
 >     }
+>     
+>     qemu_log("socket ok\n");
 > 
 >     sock = socket(AF_UNIX, SOCK_STREAM, 0);
-1024d1039
+1024d1041
 <     memset(&un, 0, sizeof(un));
-1027,1036c1042
+1027,1036c1044
 < 
 <     if (abstract) {
 <         un.sun_path[0] = '\0';
@@ -60,15 +62,18 @@
 <     }
 ---
 >     strncpy(un.sun_path, saddr->path, pathlen);
-1039a1046,1047
->         qemu_log("[unix_connect_saddr] conecting");
+1039a1048,1049
+>         qemu_log("[qunix_connect_saddr] conecting\n");
 >         printf("[unix_connect_saddr] conecting\n");
-1046c1054,1055
+1046c1056,1057
 <         error_setg_errno(errp, -rc, "Failed to connect to '%s'",
 ---
 >         qemu_log("[unix_connect_saddr] Failed to connect");
 >         error_setg_errno(errp, -rc, "x[unix_connect_saddr] Failed to connect to '%s'",
-1058,1076d1066
+1049a1061,1062
+>     
+>     qemu_log("OK\n");
+1058,1076d1070
 < #else
 < 
 < static int unix_listen_saddr(UnixSocketAddress *saddr,
@@ -88,15 +93,15 @@
 < }
 < #endif
 < 
-1096a1087
+1096a1091
 >     printf("[unix_connect]\n");
-1195a1187
+1195a1191
 >         printf("[socket_connect]\n");
-1339d1330
+1339d1334
 < #ifndef WIN32
-1366d1356
+1366d1360
 < #endif /* WIN32 */
-1398d1387
+1398d1391
 < #ifndef WIN32
-1401d1389
+1401d1393
 < #endif /* WIN32 */
