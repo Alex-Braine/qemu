@@ -1,0 +1,4 @@
+480a481
+>     printf("SOCK_CLOEXEC\n");
+487a489
+>         printf("ret >= 0\n");
