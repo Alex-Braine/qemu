@@ -17,6 +17,7 @@ jobs:
         shell: msys2 {0}
     steps:
       - name: Cat
+        if: false
         shell: pwsh 
         run: |
           dir C:\msys64\mingw64\include\
