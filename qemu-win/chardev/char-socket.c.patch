@@ -1,0 +1,7 @@
+37a38,39
+> #include "qemu/afunix.h"
+> 
+613d614
+< #ifndef _WIN32
+618d618
+< #endif
