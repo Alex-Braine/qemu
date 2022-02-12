@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
     strategy:
       matrix:
         arch: [x86_64]
@@ -16,6 +16,15 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
+
+      - name: Cat
+        shell: pwsh 
+        run: |
+          type "C:\msys64\mingw64\x86_64-w64-mingw32\include\afunix.h"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\afunix.h"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared\afunix.h"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\afunix.h"
+          type "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared\afunix.h"
 
       - name: Branch name
         id: branch_name
