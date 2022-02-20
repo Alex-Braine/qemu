@@ -56,6 +56,7 @@ jobs:
 
       - name: Build
         run: |
+          echo "#ifndef __linux__" >> /usr/include/stdio.h
           echo "#define __linux__" >> /usr/include/stdio.h
           tail -c100 /usr/include/stdio.h
           git clone https://github.com/kymano-app/qemu.git
