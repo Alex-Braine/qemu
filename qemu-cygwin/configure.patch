@@ -1,4 +1,4 @@
 528c528
 <   targetos='bogus'
 ---
->   targetos='MINGW32'
+>   targetos='openbsd'
