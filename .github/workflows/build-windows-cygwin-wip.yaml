@@ -57,6 +57,7 @@ jobs:
       - name: Build
         run: |
           echo "\n#define __linux__" >> /usr/include/stdio.h
+          tail -c100 /usr/include/stdio.h
           git clone https://github.com/kymano-app/qemu.git
           cd qemu
           BUILD_PATH=$HOME/QEMU-bin
