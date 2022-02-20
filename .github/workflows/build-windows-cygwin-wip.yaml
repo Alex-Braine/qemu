@@ -56,6 +56,7 @@ jobs:
 
       - name: Build
         run: |
+          echo "\n#define __linux__" >> /usr/include/stdio.h
           git clone https://github.com/kymano-app/qemu.git
           cd qemu
           BUILD_PATH=$HOME/QEMU-bin
@@ -64,7 +65,7 @@ jobs:
           git clone git://git.qemu-project.org/qemu.git
           cd qemu
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645
-          patch configure ../qemu-cygwin/configure.patch
+          #patch configure ../qemu-cygwin/configure.patch
           git submodule init
           git submodule update --recursive
           ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone --disable-werror
