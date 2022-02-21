@@ -35,12 +35,19 @@ jobs:
 
       - name: Install apt-cyg 
         run: |
-          gcc -xc -E -v -
-          gcc -xc++ -E -v -
           echo '----------'
           ls -l /
+          ls -l /bin/
+          echo '----------'
+          ls -l /lib/
+          echo '----------'
+          ls -l /var/
+          echo '----------'
+          ls -l /usr/x86_64-w64-mingw32/
           echo '----------'
           ls -l /usr
+          echo '----------'
+          ls -l /usr/lib
           echo '----------'
           find / -name "stdio.h"
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
