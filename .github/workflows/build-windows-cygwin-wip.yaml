@@ -62,8 +62,11 @@ jobs:
         run: |
           echo "#ifndef __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1/stdio.h
           echo "#define __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1/stdio.h
+          echo "#endif" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1/stdio.h
           echo "#ifndef __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
           echo "#define __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
+          echo "#endif" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
+
           tail -c100 /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
           git clone https://github.com/kymano-app/qemu.git
           cd qemu
