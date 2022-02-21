@@ -46,7 +46,7 @@ jobs:
           ls -l /var/
           echo '----------'
           ls -l /usr
-          echo '----------'
+          echo '----------' 
           ls -l /usr/lib
           echo '----------'
           find /  -type d -name "x86_64-w64-mingw32"
