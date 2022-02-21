@@ -35,6 +35,8 @@ jobs:
 
       - name: Install apt-cyg 
         run: |
+          gcc -xc -E -v -
+          gcc -xc++ -E -v -
           echo '----------'
           ls -l /
           ls -l /bin/
