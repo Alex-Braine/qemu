@@ -49,7 +49,7 @@ jobs:
           echo '----------' 
           ls -l /usr/lib
           echo '----------'
-          find /  -type d -name "x86_64-w64-mingw32"
+          find / -name "stdio.h"
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
           install apt-cyg /bin
 
