@@ -37,6 +37,12 @@ jobs:
         run: |
           gcc -xc -E -v -
           gcc -xc++ -E -v -
+          echo '----------'
+          ls -l /
+          echo '----------'
+          ls -l /usr
+          echo '----------'
+          find / -name "stdio.h"
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
           install apt-cyg /bin
 
