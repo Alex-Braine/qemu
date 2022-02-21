@@ -38,18 +38,7 @@ jobs:
           gcc -xc -E -v -
           gcc -xc++ -E -v -
           echo '----------'
-          ls -l /
-          ls -l /bin/
-          echo '----------'
-          ls -l /lib/
-          echo '----------'
-          ls -l /var/
-          echo '----------'
-          ls -l /usr
-          echo '----------' 
-          ls -l /usr/lib
-          echo '----------'
-          find / -name "stdio.h"
+          ls -l /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
           install apt-cyg /bin
 
@@ -71,9 +60,11 @@ jobs:
 
       - name: Build
         run: |
-          echo "#ifndef __linux__" >> /usr/include/stdio.h
-          echo "#define __linux__" >> /usr/include/stdio.h
-          tail -c100 /usr/include/stdio.h
+          echo "#ifndef __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1/stdio.h
+          echo "#define __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1/stdio.h
+          echo "#ifndef __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
+          echo "#define __linux__" >> /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
+          tail -c100 /cygdrive/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp/stdio.h
           git clone https://github.com/kymano-app/qemu.git
           cd qemu
           BUILD_PATH=$HOME/QEMU-bin
