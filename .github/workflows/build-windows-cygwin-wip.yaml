@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-2019
     defaults:
       run:
         shell: C:\tools\cygwin\bin\bash.exe --login -o igncr '{0}'
@@ -43,13 +43,11 @@ jobs:
           echo '----------'
           ls -l /var/
           echo '----------'
-          ls -l /usr/x86_64-w64-mingw32/
-          echo '----------'
           ls -l /usr
           echo '----------'
           ls -l /usr/lib
           echo '----------'
-          find / -name "stdio.h"
+          find /  -type d -name "x86_64-w64-mingw32"
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
           install apt-cyg /bin
 
