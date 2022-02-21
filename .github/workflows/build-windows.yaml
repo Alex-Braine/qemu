@@ -45,9 +45,7 @@ jobs:
           submodules: recursive
 
       - name: Install libs
-        run: |
-          gcc -xc -E -v -
-          
+        run: |          
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm mingw-w64-x86_64-gcc python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain

@@ -35,6 +35,8 @@ jobs:
 
       - name: Install apt-cyg 
         run: |
+          gcc -xc -E -v -
+          gcc -xc++ -E -v -
           wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg -O apt-cyg
           install apt-cyg /bin
 
