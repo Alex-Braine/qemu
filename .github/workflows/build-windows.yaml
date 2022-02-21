@@ -46,6 +46,8 @@ jobs:
 
       - name: Install libs
         run: |
+          gcc -xc -E -v -
+          
           pacman -Suy --noconfirm
           pacman -Sy --noconfirm mingw-w64-x86_64-gcc python
           pacman -Sy --noconfirm mingw-w64-x86_64-toolchain
@@ -68,7 +70,7 @@ jobs:
           patch tests/unit/test-util-sockets.c ../qemu-win/tests/unit/test-util-sockets.c.patch
           git submodule init
           git submodule update --recursive
-          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone
+          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone CFLAGS="-I/usr/include/"
           echo 'make'
           make
           echo 'make ok'
