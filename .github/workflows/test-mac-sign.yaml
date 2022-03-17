@@ -15,19 +15,6 @@ jobs:
         with:
           p12-file-base64: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
           p12-password: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
-      - name: Install Provisioning Profiles
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo $PROFILE_DATA | base64 --decode -o ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_UUID.provisionprofile
-          echo $HELPER_PROFILE_DATA | base64 --decode -o ~/Library/MobileDevice/Provisioning\ Profiles/$HELPER_PROFILE_UUID.provisionprofile
-          echo $LAUNCHER_PROFILE_DATA | base64 --decode -o ~/Library/MobileDevice/Provisioning\ Profiles/$LAUNCHER_PROFILE_UUID.provisionprofile
-        env:
-          PROFILE_DATA: ${{ secrets.PROFILE_DATA }}
-          PROFILE_UUID: ${{ secrets.PROFILE_UUID }}
-          HELPER_PROFILE_DATA: ${{ secrets.HELPER_PROFILE_DATA }}
-          HELPER_PROFILE_UUID: ${{ secrets.HELPER_PROFILE_UUID }}
-          LAUNCHER_PROFILE_DATA: ${{ secrets.LAUNCHER_PROFILE_DATA }}
-          LAUNCHER_PROFILE_UUID: ${{ secrets.LAUNCHER_PROFILE_UUID }}
 
       - name: Install dependencies
         run: |
@@ -37,4 +24,9 @@ jobs:
           echo "return 0;}" >> x.cpp
           g++ x.cpp -o x
           chmod +x x
-          npx notarize-cli --file "x" --bundle-id "app.kymano"
+
+      - name: Notarize app
+        run: npx notarize-cli --file "x" --bundle-id "app.kymano"
+        env:
+          NOTARIZE_USERNAME: ${{ secrets.SIGNING_USERNAME }}
+          NOTARIZE_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
