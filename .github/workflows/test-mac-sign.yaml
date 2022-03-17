@@ -19,6 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          rm -rf x.cpp
           echo "#include <iostream>" >> x.cpp
           echo "int main() {" >> x.cpp
           echo "std::cout << \"Hello World!\";" >> x.cpp
