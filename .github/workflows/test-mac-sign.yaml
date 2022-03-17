@@ -27,6 +27,7 @@ jobs:
           g++ x.cpp -o x
           chmod +x x
 
+
       - name: Notarize app
         run: npx notarize-cli --file "x" --bundle-id "app.kymano"
         env:
