@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          echo "#include <iostream>\n" >> x.cpp
-          echo "int main() {\n" >> x.cpp
-          echo "std::cout << \"Hello World!\";\n" >> x.cpp
-          echo "return 0;\n" >> x.cpp
-          echo "}\n"
+          echo "#include <iostream>" >> x.cpp
+          echo "int main() {" >> x.cpp
+          echo "std::cout << \"Hello World!\";" >> x.cpp
+          echo "return 0;" >> x.cpp
+          echo "}"
           g++ x.cpp -o x
           chmod +x x
           ./x
