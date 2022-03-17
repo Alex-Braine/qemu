@@ -11,6 +11,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Import signing certificate into keychain
+        if: false
         uses: apple-actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
