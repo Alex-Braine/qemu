@@ -8,7 +8,7 @@ on:
 jobs:
   build-macos-ports:
     name: Build0
-    runs-on: macos-11
+    runs-on: self-hosted
     steps:
       - name: Install dependencies
         run: |
