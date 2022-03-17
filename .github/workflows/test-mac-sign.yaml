@@ -15,8 +15,7 @@ jobs:
           echo "#include <iostream>" >> x.cpp
           echo "int main() {" >> x.cpp
           echo "std::cout << \"Hello World!\";" >> x.cpp
-          echo "return 0;" >> x.cpp
-          echo "}"
+          echo "return 0;}" >> x.cpp
           g++ x.cpp -o x
           chmod +x x
           ./x
