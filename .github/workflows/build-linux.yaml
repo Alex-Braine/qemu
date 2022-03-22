@@ -37,6 +37,7 @@ jobs:
           cp /usr/bin/qemu-img bin/ && \
           cp /usr/bin/qemu-system-x86_64 bin/ && \
           cp /usr/bin/qemu-system-aarch64 bin/ && \
+          cp /usr/bin/qemu-ga bin/ && \
           mkdir -p share && \
           cp -r /usr/share/qemu share/ && \
           cp -r /usr/share/tabset share/ && \
