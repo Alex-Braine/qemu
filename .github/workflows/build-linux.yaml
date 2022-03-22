@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} fedora:36 -c "dnf update -y && \
-          dnf install -y findutils patchelf qemu-${{ steps.branch_name.outputs.SOURCE_TAG }} && \
+          dnf install -y findutils patchelf qemu-${{ steps.branch_name.outputs.SOURCE_TAG }} qemu-guest-agent && \
           cd /root/ && \
           curl -OL https://raw.githubusercontent.com/kymano-app/remote-viewer/master/fix_linux.sh && \
           bash fix_linux.sh ${{ matrix.arch }} && \
