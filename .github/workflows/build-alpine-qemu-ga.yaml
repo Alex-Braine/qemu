@@ -27,7 +27,7 @@ jobs:
 
       - name: Build in docker
         run: |
-          docker run --entrypoint /bin/sh --platform linux/${{ matrix.arch }} alpine -c "pwd && \
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "pwd && \
           cd /root/ && \ 
           apk update && \
           apk add git python3 make ninja gcc g++ musl-dev pkgconfig glib-dev pixman-dev perl && \
