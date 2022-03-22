@@ -25,9 +25,11 @@ jobs:
       - name: setup-qemu-action
         uses: docker/setup-qemu-action@v1
 
-      - name: Install dependencies
+      - name: Build in docker
         run: |
-          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "cd /root/ && \ apk update && \
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "pwd && \
+          cd /root/ && \ 
+          apk update && \
           BUILD_PATH=$HOME/QEMU-bin && \
           mkdir bin && \
           git clone git://git.qemu-project.org/qemu.git && \
