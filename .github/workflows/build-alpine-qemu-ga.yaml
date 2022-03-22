@@ -5,7 +5,6 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+-alpine"
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "apk update && \
+          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "cd /root/ && \ apk update && \
           BUILD_PATH=$HOME/QEMU-bin && \
           mkdir bin && \
           git clone git://git.qemu-project.org/qemu.git && \
