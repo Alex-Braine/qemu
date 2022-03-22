@@ -27,7 +27,7 @@ jobs:
 
       - name: Build in docker
         run: |
-          docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "pwd && \
+          docker run --entrypoint /bin/sh --platform linux/${{ matrix.arch }} alpine -c "pwd && \
           cd /root/ && \ 
           apk update && \
           apk add git python3 make ninja gcc g++ musl-dev pkgconfig glib-dev pixman-dev perl && \
@@ -38,7 +38,8 @@ jobs:
           git submodule update --recursive && \
           ./configure --target-list=x86_64-softmmu --disable-capstone && \
           cd build && \
-          ninja"
+          ninja && \
+          /root/qemu/build/qga/qemu-ga --help"
 
           sudo docker cp qemu:/root/qemu/build/qga/qemu-ga ./qemu-ga-${{ matrix.arch }}
 
