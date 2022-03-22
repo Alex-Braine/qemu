@@ -38,7 +38,7 @@ jobs:
           git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645 && \
           git submodule init && \
           git submodule update --recursive && \
-          ./configure --enable-whpx --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone CFLAGS="-I/usr/include/" && \
+          ./configure --prefix=$BUILD_PATH --target-list=x86_64-softmmu --disable-capstone && \
           echo 'make' && \
           make && \
           echo 'make ok' && \
