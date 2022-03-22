@@ -40,11 +40,11 @@ jobs:
           cd build && \
           ninja"
 
-          sudo docker cp qemu:/root/qemu/build/qga/qemu-ga .
+          sudo docker cp qemu:/root/qemu/build/qga/qemu-ga ./qemu-ga-${{ matrix.arch }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            qemu-ga
+            qemu-ga-${{ matrix.arch }}
           prerelease: true
