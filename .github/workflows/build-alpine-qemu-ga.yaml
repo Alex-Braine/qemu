@@ -30,6 +30,7 @@ jobs:
           docker run --entrypoint /bin/sh --name qemu --platform linux/${{ matrix.arch }} alpine -c "pwd && \
           cd /root/ && \ 
           apk update && \
+          apk add git && \
           BUILD_PATH=$HOME/QEMU-bin && \
           mkdir bin && \
           git clone git://git.qemu-project.org/qemu.git && \
