@@ -33,7 +33,7 @@ jobs:
           apk add git python3 make ninja gcc g++ musl-dev pkgconfig glib-dev pixman-dev perl && \
           git clone git://git.qemu-project.org/qemu.git && \
           cd qemu && \
-          git reset --hard 15ef89d2a1a7b93845a6b09c2ee8e1979f6eb30b && \
+          git reset --hard 6ae6a30ca579be81d5a4a0e2cbfe714d375e0560 && \
           git submodule init && \
           git submodule update --recursive && \
           ./configure --target-list=x86_64-softmmu --disable-capstone && \
