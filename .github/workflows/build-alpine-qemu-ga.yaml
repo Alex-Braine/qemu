@@ -3,7 +3,7 @@ name: build-alpine-qemu-ga
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+-alpine"
+      - "[0-9]+.[0-9]+.[0-9]+-qemu-ga"
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
           apk add git python3 make ninja gcc g++ musl-dev pkgconfig glib-dev pixman-dev perl && \
           git clone git://git.qemu-project.org/qemu.git && \
           cd qemu && \
-          git reset --hard 44f28df24767cf9dca1ddc9b23157737c4cbb645 && \
+          git reset --hard 15ef89d2a1a7b93845a6b09c2ee8e1979f6eb30b && \
           git submodule init && \
           git submodule update --recursive && \
           ./configure --target-list=x86_64-softmmu --disable-capstone && \
